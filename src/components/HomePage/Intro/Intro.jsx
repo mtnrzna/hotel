@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import LinkWrapper from "../../LinkWrapper";
 
 const Container = styled.div`
     height: calc(100vh - 80px);
@@ -67,7 +68,9 @@ const Intro = () => {
                         زیبای کیش نزدیک به ساحل شرقی در سال 1382 توسط بهترین
                         معماران ایرانی ساخته شده است
                     </Desc>
-                    <ReserveButton>رزرو هتل</ReserveButton>
+                    <ReserveButton>
+                        <LinkWrapper to="/reserve">رزرو هتل</LinkWrapper>
+                    </ReserveButton>
                 </Right>
             </Wrapper>
         </Container>
