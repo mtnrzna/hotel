@@ -7,6 +7,7 @@ import Title from "../components/AuthPages/Title/Title";
 import Input from "../components/AuthPages/Input/Input";
 import SubmitButton from "../components/AuthPages/SubmitButton/SubmitButton";
 import SignInWithGoogle from "../components/AuthPages/SignInWithGoogle/SignInWithGoogle";
+import LinkWrapper from "../components/LinkWrapper";
 
 const ForgotPassContainer = styled.div`
     width: 100%;
@@ -56,7 +57,16 @@ const SignIn = () => {
                 />
                 <ForgotPassContainer>
                     رمز عبور خود را فراموش کرده‌اید؟
-                    <ForgotPass>فراموشی رمز عبور</ForgotPass>
+                    <ForgotPass>
+                        <LinkWrapper
+                            to="/forgot-password"
+                            style={{
+                                textDecoration: "underline",
+                            }}
+                        >
+                            فراموشی رمز عبور
+                        </LinkWrapper>
+                    </ForgotPass>
                 </ForgotPassContainer>
                 <SubmitButton>ورود</SubmitButton>
                 <OrSec>

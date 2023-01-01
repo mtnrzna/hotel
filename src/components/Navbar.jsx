@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import LinkWrapper from "./LinkWrapper";
 
 const Container = styled.div`
     height: 80px;
@@ -62,6 +63,13 @@ const Right = styled.div`
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+`;
+
+const ImageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Logo = styled.img`
@@ -74,17 +82,33 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <Left>
-                    <Signup>ثبت نام</Signup>
-                    <Login>ورود</Login>
+                    <LinkWrapper to="/signup">
+                        <Signup>ثبت نام</Signup>
+                    </LinkWrapper>
+                    <LinkWrapper to="/signin">
+                        <Login>ورود</Login>
+                    </LinkWrapper>
                 </Left>
                 <Center>
-                    <MenuItem>درباره ما</MenuItem>
-                    <MenuItem>گالری</MenuItem>
-                    <MenuItem>رزرو هتل</MenuItem>
-                    <MenuItem>صفحه اصلی</MenuItem>
+                    <LinkWrapper to="/about-us">
+                        <MenuItem>درباره ما</MenuItem>
+                    </LinkWrapper>
+                    <LinkWrapper to="/gallery">
+                        <MenuItem>گالری</MenuItem>
+                    </LinkWrapper>
+                    <LinkWrapper to="/reserve">
+                        <MenuItem>رزرو هتل</MenuItem>
+                    </LinkWrapper>
+                    <LinkWrapper to="/">
+                        <MenuItem>صفحه اصلی</MenuItem>
+                    </LinkWrapper>
                 </Center>
                 <Right>
-                    <Logo src="images/logo.png" />
+                    <LinkWrapper to="/">
+                        <ImageContainer>
+                            <Logo src="images/logo.png" />
+                        </ImageContainer>
+                    </LinkWrapper>
                 </Right>
             </Wrapper>
         </Container>
