@@ -7,6 +7,9 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ForgotPass from "./pages/ForgotPass";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Reserves from "./pages/Reserves";
+import Reserve from "./pages/Reserve";
+import News from "./pages/News";
 
 function App() {
     const user = false;
@@ -28,6 +31,9 @@ function App() {
                     path="/forgot-password"
                     element={user ? <Navigate to="/" /> : <ForgotPass />}
                 ></Route>
+                <Route path="/reserves" element={<Reserves />}></Route>
+                <Route path="/reserve/:id" element={<Reserve />}></Route>
+                <Route path="/news/:id" element={<News />}></Route>
             </Routes>
         </BrowserRouter>
     );

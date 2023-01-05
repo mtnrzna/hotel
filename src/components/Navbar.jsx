@@ -96,7 +96,7 @@ const Navbar = () => {
                     <LinkWrapper to="/gallery">
                         <MenuItem>گالری</MenuItem>
                     </LinkWrapper>
-                    <LinkWrapper to="/reserve">
+                    <LinkWrapper to="/reserves">
                         <MenuItem>رزرو هتل</MenuItem>
                     </LinkWrapper>
                     <LinkWrapper to="/">
@@ -106,7 +106,7 @@ const Navbar = () => {
                 <Right>
                     <LinkWrapper to="/">
                         <ImageContainer>
-                            <Logo src="images/logo.png" />
+                            <Logo src="/images/logo.png" />
                         </ImageContainer>
                     </LinkWrapper>
                 </Right>

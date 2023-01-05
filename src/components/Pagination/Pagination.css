@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-item,
+.page-link,
+.active {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.page-item {
+    margin: 3px;
+    border: 1px solid #f1f1f1;
+}
+.active {
+    color: white;
+    background-color: #2f80ed;
+}
+.active :active {
+    background-color: #5998eb;
+}

@@ -58,7 +58,7 @@ const Intro = () => {
         <Container>
             <Wrapper>
                 <Left>
-                    <Hero src="images/hero.png" />
+                    <Hero src="/images/hero.png" />
                 </Left>
                 <Right>
                     <Title>هتل بزرگ پنج ستاره یوسف</Title>
@@ -69,7 +69,7 @@ const Intro = () => {
                         معماران ایرانی ساخته شده است
                     </Desc>
                     <ReserveButton>
-                        <LinkWrapper to="/reserve">رزرو هتل</LinkWrapper>
+                        <LinkWrapper to="/reserves">رزرو هتل</LinkWrapper>
                     </ReserveButton>
                 </Right>
             </Wrapper>

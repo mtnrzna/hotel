@@ -82,7 +82,7 @@ const Footer = () => {
         <Container>
             <Wrapper>
                 <Left>
-                    <Logo src="images/logo.png" />
+                    <Logo src="/images/logo.png" />
                     <SocialMedias>
                         <SocialMedia url="https://instagram.com" />
                         <SocialMedia url="https://telegram.com" />

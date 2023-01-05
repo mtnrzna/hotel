@@ -1,27 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
-const Container = styled.div`
-    height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f6f6f6;
-`;
-
-const Wrapper = styled.div`
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    background: white;
-    box-shadow: 0px 5px 10px 0px #dddddd;
-    border-radius: 5px;
-    overflow: hidden;
-`;
+import Container from "../Container";
+import Wrapper from "../Wrapper";
 
 const Left = styled.div`
     width: 50%;
-    height: 600px;
+    height: 70vh;
     overflow: hidden;
 `;
 
@@ -50,10 +34,17 @@ const Content = styled.div`
 
 const Template = ({ children }) => {
     return (
-        <Container>
-            <Wrapper>
+        <Container style={{ height: "calc(100vh - 80px)" }}>
+            <Wrapper
+                style={{
+                    padding: "0",
+                    margin: "0",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                }}
+            >
                 <Left>
-                    <Image src="images/auth.png" />
+                    <Image src="/images/auth.png" />
                 </Left>
                 <Right>
                     <Content>{children}</Content>

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LikesButton from "../../../../UI/LikesButton";
+import LinkWrapper from "../../../../LinkWrapper";
 
 const Container = styled.div`
     display: flex;
@@ -51,14 +52,6 @@ const ReserveButton = styled.button`
     align-items: center;
 `;
 
-const LikesButton = styled.button`
-    background-color: transparent;
-    border: transparent;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-`;
-
 const SmallRoomCart = ({ room }) => {
     return (
         <Container>
@@ -66,19 +59,18 @@ const SmallRoomCart = ({ room }) => {
                 <Image src={room.image} />
             </Left>
             <Right>
-                <Title>{room.title}</Title>
+                <LinkWrapper to={`/reserve/${room.id}`}>
+                    <Title>{room.title}</Title>
+                </LinkWrapper>
                 <Desc>{room.desc}</Desc>
                 <BottomBar>
-                    <ReserveButton>
-                        <ArrowBackIosIcon style={{ fontSize: "14px" }} />
-                        رزرو اتاق
-                    </ReserveButton>
-                    <LikesButton>
-                        12
-                        <FavoriteBorderIcon
-                            style={{ fontSize: "20px", marginLeft: "5px" }}
-                        />
-                    </LikesButton>
+                    <LinkWrapper to={`/reserve/${room.id}`}>
+                        <ReserveButton>
+                            <ArrowBackIosIcon style={{ fontSize: "14px" }} />
+                            رزرو اتاق
+                        </ReserveButton>
+                    </LinkWrapper>
+                    <LikesButton likeNumber={12} />
                 </BottomBar>
             </Right>
         </Container>

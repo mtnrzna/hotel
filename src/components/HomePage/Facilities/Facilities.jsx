@@ -94,7 +94,7 @@ const Facilities = () => {
                 <Top>امکانات هتل ما</Top>
                 <Bottom>
                     {facilities.map((f) => (
-                        <Cart>
+                        <Cart key={f.icon}>
                             <IconContainer>{f.icon}</IconContainer>
                             <Title>{f.title}</Title>
                             <Desc>{f.desc}</Desc>
