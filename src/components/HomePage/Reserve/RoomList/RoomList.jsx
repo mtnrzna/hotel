@@ -13,7 +13,7 @@ const RoomList = () => {
     return (
         <Container>
             {rooms.map((room) => (
-                <SmallRoomCart room={room} key={room._id} />
+                <SmallRoomCart room={room} key={room.id} />
             ))}
         </Container>
     );

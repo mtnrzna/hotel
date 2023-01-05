@@ -4,6 +4,7 @@ import Slick from "react-slick";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ShareIcon from "@mui/icons-material/Share";
 import { news } from "../../../../data";
+import LinkWrapper from "../../../LinkWrapper";
 
 const Carousel = styled(Slick)`
     max-width: 80vw;
@@ -52,7 +53,7 @@ const SeeMoreButton = styled.button`
     align-items: center;
 `;
 
-const SLider = () => {
+const Slider = () => {
     const settings = {
         dots: true,
         infinite: true,
@@ -63,20 +64,24 @@ const SLider = () => {
     return (
         <Carousel {...settings}>
             {news.map((n) => (
-                <Cart>
+                <Cart key={n.id}>
                     <Top>
                         <Image src={n.image} />
                     </Top>
                     <Bottom>
-                        <Title>{n.title}</Title>
+                        <LinkWrapper to={`/news/${n.id}`}>
+                            <Title>{n.title}</Title>
+                        </LinkWrapper>
                         <Desc>{n.desc}</Desc>
                         <BottomBar>
-                            <SeeMoreButton>
-                                <ArrowBackIosIcon
-                                    style={{ fontSize: "14px" }}
-                                />
-                                ادامه مطلب
-                            </SeeMoreButton>
+                            <LinkWrapper to={`/news/${n.id}`}>
+                                <SeeMoreButton>
+                                    <ArrowBackIosIcon
+                                        style={{ fontSize: "14px" }}
+                                    />
+                                    ادامه مطلب
+                                </SeeMoreButton>
+                            </LinkWrapper>
                             <ShareIcon style={{ fontSize: "18px" }} />
                         </BottomBar>
                     </Bottom>
@@ -86,4 +91,4 @@ const SLider = () => {
     );
 };
 
-export default SLider;
+export default Slider;

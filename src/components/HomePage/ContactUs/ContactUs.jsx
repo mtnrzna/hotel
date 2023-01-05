@@ -131,7 +131,7 @@ const ContactUs = () => {
                 <Top>تماس با ما</Top>
                 <Bottom>
                     <Left>
-                        <Map src="images/map.png" />
+                        <Map src="/images/map.png" />
                     </Left>
                     <Right>
                         <WrapperRight>

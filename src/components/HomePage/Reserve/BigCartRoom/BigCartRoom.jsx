@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { bigRoom } from "../.././../../data";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LinkWrapper from "../../../LinkWrapper";
 
 const Container = styled.div`
     align-self: stretch;
@@ -70,13 +71,17 @@ const BigCartRoom = () => {
                 <Image src={bigRoom.image} />
             </Top>
             <Bottom>
-                <Title>{bigRoom.title}</Title>
+                <LinkWrapper to={`/reserve/${bigRoom.id}`}>
+                    <Title>{bigRoom.title}</Title>
+                </LinkWrapper>
                 <Desc>{bigRoom.desc}</Desc>
                 <BottomBar>
-                    <ReserveButton>
-                        <ArrowBackIosIcon style={{ fontSize: "14px" }} />
-                        رزرو اتاق
-                    </ReserveButton>
+                    <LinkWrapper to={`/reserve/${bigRoom.id}`}>
+                        <ReserveButton>
+                            <ArrowBackIosIcon style={{ fontSize: "14px" }} />
+                            رزرو اتاق
+                        </ReserveButton>
+                    </LinkWrapper>
                     <LikesButton>
                         12
                         <FavoriteBorderIcon
