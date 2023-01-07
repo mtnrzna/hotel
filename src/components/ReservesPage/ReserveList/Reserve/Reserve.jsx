@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LinkWrapper from "../../../LinkWrapper";
 import LikesButton from "../../../UI/LikesButton";
+import TemplateButton from "../../../UI/TemplateButton";
 
 const Container = styled.div`
     padding: 30px 0;
@@ -45,14 +46,9 @@ const BottomBar = styled.div`
     align-content: center;
 `;
 
-const ReserveButton = styled.button`
+const ReserveButton = styled(TemplateButton)`
     height: 35px;
     width: 150px;
-    background-color: #2f80ed;
-    color: white;
-    border: 0px;
-    border-radius: 3px;
-    font-size: 17px;
 `;
 
 const Reserve = ({ item }) => {

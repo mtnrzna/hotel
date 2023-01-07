@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import LinkWrapper from "./LinkWrapper";
@@ -9,7 +10,8 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     box-shadow: 0px 5px 10px 0px #dddddd;
-    ${mobile({ height: "50px" })}
+    position: relative;
+    z-index: 10 ${mobile({ height: "50px" })};
 `;
 
 const Wrapper = styled.div`
@@ -28,8 +30,8 @@ const Left = styled.div`
 `;
 
 const Signup = styled.button`
-    width: 100px;
     height: 30px;
+    width: 120px;
     margin-right: 20px;
     background-color: black;
     border-radius: 3px;
@@ -40,7 +42,7 @@ const Signup = styled.button`
 
 const Login = styled.button`
     height: 30px;
-    width: 100px;
+    width: 120px;
     background-color: white;
     color: black;
     border: 0px;
@@ -78,6 +80,7 @@ const Logo = styled.img`
 `;
 
 const Navbar = () => {
+    const path = useLocation().pathname;
     return (
         <Container>
             <Wrapper>
@@ -91,16 +94,44 @@ const Navbar = () => {
                 </Left>
                 <Center>
                     <LinkWrapper to="/about-us">
-                        <MenuItem>درباره ما</MenuItem>
+                        <MenuItem
+                            style={
+                                path === "/about-us"
+                                    ? { fontWeight: "bold" }
+                                    : {}
+                            }
+                        >
+                            درباره ما
+                        </MenuItem>
                     </LinkWrapper>
                     <LinkWrapper to="/gallery">
-                        <MenuItem>گالری</MenuItem>
+                        <MenuItem
+                            style={
+                                path === "/gallery"
+                                    ? { fontWeight: "bold" }
+                                    : {}
+                            }
+                        >
+                            گالری
+                        </MenuItem>
                     </LinkWrapper>
                     <LinkWrapper to="/reserves">
-                        <MenuItem>رزرو هتل</MenuItem>
+                        <MenuItem
+                            style={
+                                path === "/reserves"
+                                    ? { fontWeight: "bold" }
+                                    : {}
+                            }
+                        >
+                            رزرو هتل
+                        </MenuItem>
                     </LinkWrapper>
                     <LinkWrapper to="/">
-                        <MenuItem>صفحه اصلی</MenuItem>
+                        <MenuItem
+                            style={path === "/" ? { fontWeight: "bold" } : {}}
+                        >
+                            صفحه اصلی
+                        </MenuItem>
                     </LinkWrapper>
                 </Center>
                 <Right>

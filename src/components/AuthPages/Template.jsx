@@ -37,6 +37,7 @@ const Template = ({ children }) => {
         <Container style={{ height: "calc(100vh - 80px)" }}>
             <Wrapper
                 style={{
+                    maxHeight: "1400px",
                     padding: "0",
                     margin: "0",
                     flexDirection: "row",

@@ -1,26 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import HomeSectionContainer from "../HomeSectionContainer";
+import HomeSectionWrapper from "../HomeSectionWrapper";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import WifiIcon from "@mui/icons-material/Wifi";
 import FlatwareIcon from "@mui/icons-material/Flatware";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import TourIcon from "@mui/icons-material/Tour";
-
-const Container = styled.div`
-    height: calc(100vh + 150px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
-const Wrapper = styled.div`
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
 
 const Top = styled.h2`
     margin-bottom: 40px;
@@ -89,8 +76,8 @@ const facilities = [
 ];
 const Facilities = () => {
     return (
-        <Container>
-            <Wrapper>
+        <HomeSectionContainer>
+            <HomeSectionWrapper>
                 <Top>امکانات هتل ما</Top>
                 <Bottom>
                     {facilities.map((f) => (
@@ -101,8 +88,8 @@ const Facilities = () => {
                         </Cart>
                     ))}
                 </Bottom>
-            </Wrapper>
-        </Container>
+            </HomeSectionWrapper>
+        </HomeSectionContainer>
     );
 };
 

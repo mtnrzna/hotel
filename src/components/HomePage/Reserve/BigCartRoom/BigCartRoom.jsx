@@ -4,16 +4,17 @@ import { bigRoom } from "../.././../../data";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LinkWrapper from "../../../LinkWrapper";
+import truncateText from "../../../../utils/truncateText";
 
 const Container = styled.div`
-    align-self: stretch;
-    margin-bottom: 10px;
+    margin: 0 10px 10px 0;
     flex: 5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: 3px;
     box-shadow: 0px 5px 10px 0px #dddddd;
+    box-sizing: border-box;
 `;
 
 const Top = styled.div`
@@ -30,16 +31,16 @@ const Bottom = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: space-between;
 `;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+    margin: 0 0 10px 0;
+`;
 
 const Desc = styled.div`
     direction: rtl;
-    margin-bottom: 30px;
-    font-size: 16px;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 `;
 
 const BottomBar = styled.div`
@@ -72,9 +73,9 @@ const BigCartRoom = () => {
             </Top>
             <Bottom>
                 <LinkWrapper to={`/reserve/${bigRoom.id}`}>
-                    <Title>{bigRoom.title}</Title>
+                    <Title>{truncateText(bigRoom.title, 50)}</Title>
                 </LinkWrapper>
-                <Desc>{bigRoom.desc}</Desc>
+                <Desc>{truncateText(bigRoom.desc, 100)}</Desc>
                 <BottomBar>
                     <LinkWrapper to={`/reserve/${bigRoom.id}`}>
                         <ReserveButton>

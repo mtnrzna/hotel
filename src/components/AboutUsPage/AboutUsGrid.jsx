@@ -37,13 +37,16 @@ const InfoSec = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    direction: rtl;
 `;
 
-const Title = styled.h4`
+const Title = styled.h3`
     padding: 0 0 15px 0;
 `;
 
-const Desc = styled.div``;
+const Desc = styled.div`
+    margin-left: 10px;
+`;
 
 const AboutUsGrid = () => {
     return (
@@ -54,7 +57,7 @@ const AboutUsGrid = () => {
                         <ImageContainer>
                             <Image src="/images/aboutus/pic1.png" />
                         </ImageContainer>
-                        <InfoSec style={{ direction: "rtl" }}>
+                        <InfoSec>
                             <Title>ارایه خدمات آنلاین رزرو هتل</Title>
                             <Desc>
                                 مرکز ملی رزرواسیون اماکن اقامتی کشور به عنوان
@@ -67,9 +70,9 @@ const AboutUsGrid = () => {
                         </InfoSec>
                     </Column>
                     <Column>
-                        <InfoSec style={{ direction: "ltr" }}>
+                        <InfoSec style={{ marginRight: "20px" }}>
                             <Title>ارایه خدمات آنلاین رزرو هتل</Title>
-                            <Desc style={{ padding: "0 50px 0 0" }}>
+                            <Desc>
                                 مرکز ملی رزرواسیون اماکن اقامتی کشور به عنوان
                                 اولین و تنها مرکز رسمی رزرواسیون هتل در ایران که
                                 موافقت اصولی سازمان میراث فرهنگی، صنایع دستی و
@@ -86,7 +89,7 @@ const AboutUsGrid = () => {
                         <ImageContainer>
                             <Image src="/images/aboutus/pic3.png" />
                         </ImageContainer>
-                        <InfoSec style={{ direction: "rtl" }}>
+                        <InfoSec>
                             <Title>ارایه خدمات آنلاین رزرو هتل</Title>
                             <Desc>
                                 مرکز ملی رزرواسیون اماکن اقامتی کشور به عنوان

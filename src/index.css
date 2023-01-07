@@ -18,6 +18,10 @@ button {
     font-family: inherit;
 }
 
+div {
+    font-size: 14px;
+}
+
 button {
     cursor: pointer;
 }

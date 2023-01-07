@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import TemplateButton from "../../UI/TemplateButton";
 
-const CustomButton = styled.button`
+const CustomButton = styled(TemplateButton)`
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #2f80ed;
-    color: white;
-    border: transparent;
-    border-radius: 3px;
+    font-size: 13px;
     &:active {
         background-color: #2f81edde;
     }

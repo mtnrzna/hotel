@@ -6,6 +6,7 @@ import LatestNews from "../components/HomePage/LatestNews/LatestNews";
 import Facilities from "../components/HomePage/Facilities/Facilities";
 import ContactUs from "../components/HomePage/ContactUs/ContactUs";
 import Footer from "../components/Footer";
+
 const Home = () => {
     return (
         <div>
