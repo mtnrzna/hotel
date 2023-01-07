@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LinkWrapper from "../../LinkWrapper";
+import TemplateButton from "../../UI/TemplateButton";
 
 const Container = styled.div`
     height: calc(100vh - 80px);
@@ -43,14 +44,9 @@ const Desc = styled.div`
     font-size: 16px;
 `;
 
-const ReserveButton = styled.button`
+const ReserveButton = styled(TemplateButton)`
     height: 35px;
-    width: 120px;
-    background-color: #2f80ed;
-    color: white;
-    border: 0px;
-    border-radius: 3px;
-    font-size: 17px;
+    width: 150px;
 `;
 
 const Intro = () => {

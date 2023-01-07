@@ -9,6 +9,7 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import TemplateButton from "../UI/TemplateButton";
 
 const Top = styled.div`
     display: flex;
@@ -203,14 +204,9 @@ const NumberSection = styled.div`
 
 const NumberInput = styled.input``;
 
-const ReserveButton = styled.button`
+const ReserveButton = styled(TemplateButton)`
     height: 35px;
     width: 150px;
-    background-color: #2f80ed;
-    color: white;
-    border: 0px;
-    border-radius: 3px;
-    font-size: 17px;
 `;
 
 const iconClasses = { color: "white", fontSize: "35px" };
@@ -265,8 +261,8 @@ const ReserveSection = () => {
                             امکانات جانبی هتل شامل:
                         </FacilitiesTitle>
                         <FacilitiesContainer>
-                            {room.facilities.map((c) => (
-                                <FacilitiesItem key={c}>{c}</FacilitiesItem>
+                            {room.facilities.map((f) => (
+                                <FacilitiesItem key={f}>{f}</FacilitiesItem>
                             ))}
                         </FacilitiesContainer>
                     </TopRight>
@@ -308,28 +304,28 @@ const ReserveSection = () => {
                     </BottomLeft>
                     <BottomRight>
                         <DateSection>
-                            <Label for="arrival-date">تاریخ ورود:</Label>
+                            <Label htmlFor="arrival-date">تاریخ ورود:</Label>
                             <DateInput
                                 name="arrival-date"
                                 type="date"
-                                value="2023-01-20"
+                                placeholder="2023-01-20"
                                 min="2012-01-01"
                                 max="2100-12-31"
                             />
                         </DateSection>
                         <DateSection>
-                            <Label for="departure-date">تاریخ خروج:</Label>
+                            <Label htmlFor="departure-date">تاریخ خروج:</Label>
                             <DateInput
                                 name="departure-date"
                                 type="date"
-                                value="2023-01-20"
+                                placeholder="2023-01-20"
                                 min="2012-01-01"
                                 max="2100-12-31"
                             />
                         </DateSection>
                         <NumbersSection>
                             <NumberSection>
-                                <Label for="children-number">کودک:</Label>
+                                <Label htmlFor="children-number">کودک:</Label>
                                 <NumberInput
                                     name="children-number"
                                     type="number"
@@ -338,7 +334,7 @@ const ReserveSection = () => {
                                 />
                             </NumberSection>
                             <NumberSection>
-                                <Label for="adults-number">بزرگسال:</Label>
+                                <Label htmlFor="adults-number">بزرگسال:</Label>
                                 <NumberInput
                                     name="adults-number"
                                     type="number"

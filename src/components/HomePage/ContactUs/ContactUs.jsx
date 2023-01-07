@@ -2,21 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-
-const Container = styled.div`
-    height: calc(100vh + 150px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-
-const Wrapper = styled.div`
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
+import TemplateButton from "../../UI/TemplateButton";
+import HomeSectionContainer from "../HomeSectionContainer";
+import HomeSectionWrapper from "../HomeSectionWrapper";
 
 const Top = styled.h2`
     margin-bottom: 40px;
@@ -82,14 +70,10 @@ const Message = styled.textarea`
     resize: none;
 `;
 
-const Submit = styled.button`
+const Submit = styled(TemplateButton)`
     width: 30%;
     height: 5%;
     margin-bottom: 20px;
-    background-color: #2f80ed;
-    border: transparent;
-    border-radius: 3px;
-    color: white;
 `;
 
 const Contacts = styled.div`
@@ -126,8 +110,8 @@ const Circle = styled.div`
 `;
 const ContactUs = () => {
     return (
-        <Container>
-            <Wrapper>
+        <HomeSectionContainer>
+            <HomeSectionWrapper>
                 <Top>تماس با ما</Top>
                 <Bottom>
                     <Left>
@@ -162,8 +146,8 @@ const ContactUs = () => {
                         </WrapperRight>
                     </Right>
                 </Bottom>
-            </Wrapper>
-        </Container>
+            </HomeSectionWrapper>
+        </HomeSectionContainer>
     );
 };
 

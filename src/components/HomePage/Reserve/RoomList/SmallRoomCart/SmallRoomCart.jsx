@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import LikesButton from "../../../../UI/LikesButton";
 import LinkWrapper from "../../../../LinkWrapper";
+import truncateText from "../../../../../utils/truncateText";
 
 const Container = styled.div`
     display: flex;
@@ -10,11 +11,13 @@ const Container = styled.div`
     align-items: center;
     border-radius: 3px;
     box-shadow: 0px 5px 10px 0px #dddddd;
-    margin: 0 0 10px 10px;
+    margin-bottom: 10px;
 `;
 
 const Left = styled.div`
     flex: 5;
+    max-height: 200px;
+    overflow: hidden;
 `;
 
 const Image = styled.img`
@@ -22,20 +25,24 @@ const Image = styled.img`
 `;
 
 const Right = styled.div`
+    height: 100%;
     flex: 7;
-    padding: 20px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-end;
+    box-sizing: border-box;
 `;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+    margin: 0 0 10px 0;
+`;
 
 const Desc = styled.div`
     direction: rtl;
-    margin-bottom: 40px;
-    font-size: 16px;
+    margin: 0 0 10px 0;
+    font-size: 14px;
 `;
 
 const BottomBar = styled.div`
@@ -60,9 +67,9 @@ const SmallRoomCart = ({ room }) => {
             </Left>
             <Right>
                 <LinkWrapper to={`/reserve/${room.id}`}>
-                    <Title>{room.title}</Title>
+                    <Title>{truncateText(room.title, 50)}</Title>
                 </LinkWrapper>
-                <Desc>{room.desc}</Desc>
+                <Desc>{truncateText(room.desc, 100)}</Desc>
                 <BottomBar>
                     <LinkWrapper to={`/reserve/${room.id}`}>
                         <ReserveButton>

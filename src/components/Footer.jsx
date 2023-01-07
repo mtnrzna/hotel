@@ -4,7 +4,6 @@ import { mobile } from "../responsive";
 import { SocialIcon } from "react-social-icons";
 
 const Container = styled.div`
-    height: 240px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-    margin-top: 15px;
+    margin: 10px 0;
     width: 80%;
     padding: 20px 20px;
     display: flex;
@@ -22,7 +21,6 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
     align-self: stretch;
-    padding-top: 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -52,30 +50,36 @@ const Center = styled.div`
 `;
 
 const Column = styled.div`
-    padding: 20px;
+    padding: 0 10px 10px 10px;
 `;
 
-const ColumnTitle = styled.div`
-    font-weight: 900;
+const ColumnTitle = styled.h5`
+    margin: 0 0 0 10px;
     border-bottom: 1px solid black;
 `;
-const ColumnItem = styled.div``;
+const ColumnItem = styled.div`
+    font-size: 13px;
+    font-weight: 400;
+`;
 
 const Right = styled.div`
     flex: 1;
     align-self: stretch;
-    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     direction: rtl;
 `;
 
-const AboutUsTitle = styled.div`
-    font-weight: 900;
+const AboutUsTitle = styled.h4`
+    margin: 0 0 0 10px;
+    border-bottom: 1px solid black;
 `;
 
-const AboutUsDesc = styled.div``;
+const AboutUsDesc = styled.div`
+    font-size: 13px;
+    font-weight: 400;
+`;
 
 const Footer = () => {
     return (

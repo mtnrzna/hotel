@@ -5,38 +5,57 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ShareIcon from "@mui/icons-material/Share";
 import { news } from "../../../../data";
 import LinkWrapper from "../../../LinkWrapper";
-
+import truncateText from "../.././../../utils/truncateText";
+import Arrow from "./Arrow/Arrow";
 const Carousel = styled(Slick)`
     max-width: 80vw;
 `;
 
+const Container = styled.div`
+    max-height: 80vh;
+`;
+
 const Cart = styled.div`
-    padding: 5px;
-    margin: 50px;
+    height: 100%;
+    margin: 15px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 3px;
     box-shadow: 0px 5px 10px 0px #dddddd;
+    box-sizing: border-box;
 `;
 
-const Top = styled.div``;
+const Top = styled.div`
+    width: 100%;
+    height: 35vh;
+    overflow: hidden;
+`;
 
 const Image = styled.img`
-    max-width: 40vw;
-    max-height: 40vh;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 const Bottom = styled.div`
-    padding: 20px;
+    flex: 1;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 `;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+    margin: 0 0 10px 0;
+    direction: rtl;
+`;
 
 const Desc = styled.div`
     direction: rtl;
     margin-bottom: 40px;
-    font-size: 16px;
 `;
 
 const BottomBar = styled.div`
@@ -57,35 +76,44 @@ const Slider = () => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 1500,
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        prevArrow: <Arrow type="left" />,
+        nextArrow: <Arrow type="right" />,
     };
     return (
-        <Carousel {...settings}>
+        <Carousel
+            {...settings}
+            style={{ display: "flex", alignItems: "center" }}
+        >
             {news.map((n) => (
-                <Cart key={n.id}>
-                    <Top>
-                        <Image src={n.image} />
-                    </Top>
-                    <Bottom>
-                        <LinkWrapper to={`/news/${n.id}`}>
-                            <Title>{n.title}</Title>
-                        </LinkWrapper>
-                        <Desc>{n.desc}</Desc>
-                        <BottomBar>
+                <Container key={n.id}>
+                    <Cart>
+                        <Top>
+                            <Image src={n.image} />
+                        </Top>
+                        <Bottom>
                             <LinkWrapper to={`/news/${n.id}`}>
-                                <SeeMoreButton>
-                                    <ArrowBackIosIcon
-                                        style={{ fontSize: "14px" }}
-                                    />
-                                    ادامه مطلب
-                                </SeeMoreButton>
+                                <Title>{truncateText(n.title, 80)}</Title>
                             </LinkWrapper>
-                            <ShareIcon style={{ fontSize: "18px" }} />
-                        </BottomBar>
-                    </Bottom>
-                </Cart>
+                            <Desc>{truncateText(n.desc, 120)}</Desc>
+                            <BottomBar>
+                                <LinkWrapper to={`/news/${n.id}`}>
+                                    <SeeMoreButton>
+                                        <ArrowBackIosIcon
+                                            style={{ fontSize: "14px" }}
+                                        />
+                                        ادامه مطلب
+                                    </SeeMoreButton>
+                                </LinkWrapper>
+                                <ShareIcon style={{ fontSize: "18px" }} />
+                            </BottomBar>
+                        </Bottom>
+                    </Cart>
+                </Container>
             ))}
         </Carousel>
     );
