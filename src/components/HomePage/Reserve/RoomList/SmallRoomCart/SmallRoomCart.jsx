@@ -4,6 +4,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import LikesButton from "../../../../UI/LikesButton";
 import LinkWrapper from "../../../../LinkWrapper";
 import truncateText from "../../../../../utils/truncateText";
+import { mobile } from "../../../../../responsive";
 
 const Container = styled.div`
     display: flex;
@@ -16,12 +17,19 @@ const Container = styled.div`
 
 const Left = styled.div`
     flex: 5;
-    max-height: 200px;
+    height: 200px;
     overflow: hidden;
+    margin: 0 0 10px 0;
+    ${mobile({
+        flex: "1",
+        height: "100%",
+    })}
 `;
 
 const Image = styled.img`
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 const Right = styled.div`
@@ -33,16 +41,26 @@ const Right = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     box-sizing: border-box;
+    ${mobile({
+        flex: "1",
+    })}
 `;
 
 const Title = styled.h3`
     margin: 0 0 10px 0;
+    ${mobile({
+        fontSize: "16px",
+        fontWeight: "bold",
+    })}
 `;
 
 const Desc = styled.div`
     direction: rtl;
     margin: 0 0 10px 0;
     font-size: 14px;
+    ${mobile({
+        fontSize: "14px",
+    })}
 `;
 
 const BottomBar = styled.div`
@@ -57,6 +75,10 @@ const ReserveButton = styled.button`
     font-weight: 600;
     display: flex;
     align-items: center;
+    ${mobile({
+        fontSize: "14px",
+        fontWeight: "bold",
+    })}
 `;
 
 const SmallRoomCart = ({ room }) => {

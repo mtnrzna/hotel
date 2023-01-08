@@ -5,6 +5,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LinkWrapper from "../../../LinkWrapper";
 import truncateText from "../../../../utils/truncateText";
+import { mobile } from "../../../../responsive";
 
 const Container = styled.div`
     margin: 0 10px 10px 0;
@@ -15,6 +16,9 @@ const Container = styled.div`
     border-radius: 3px;
     box-shadow: 0px 5px 10px 0px #dddddd;
     box-sizing: border-box;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const Top = styled.div`

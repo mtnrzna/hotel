@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SmallRoomCart from "./SmallRoomCart/SmallRoomCart";
 import { rooms } from "../../../../data";
+
 const Container = styled.div`
     flex: 7;
     display: flex;

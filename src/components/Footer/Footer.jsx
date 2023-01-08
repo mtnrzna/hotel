@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile } from "../../responsive";
 import { SocialIcon } from "react-social-icons";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Container = styled.div`
     display: flex;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    ${mobile({ flexDirection: "column" })}
 `;
 
 const Left = styled.div`
@@ -24,6 +26,11 @@ const Left = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
+    ${mobile({
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: "40px",
+    })}
 `;
 
 const Logo = styled.img`
@@ -47,19 +54,41 @@ const Center = styled.div`
     justify-content: center;
     align-items: flex-start;
     direction: rtl;
+    ${mobile({
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: "40px",
+    })}
 `;
 
 const Column = styled.div`
     padding: 0 10px 10px 10px;
+    ${mobile({
+        justifyContent: "center",
+        alignItems: "center",
+    })}
 `;
 
 const ColumnTitle = styled.h5`
     margin: 0 0 0 10px;
     border-bottom: 1px solid black;
+    ${mobile({
+        marginBottom: "15px",
+        paddingBottom: "15px",
+        fontSize: "13px",
+        fontWeight: "bold",
+        textAlign: "center",
+    })}
 `;
+
 const ColumnItem = styled.div`
     font-size: 13px;
     font-weight: 400;
+    ${mobile({
+        marginBottom: "10px",
+        fontSize: "13px",
+        textAlign: "center",
+    })}
 `;
 
 const Right = styled.div`
@@ -69,19 +98,38 @@ const Right = styled.div`
     flex-direction: column;
     align-items: flex-start;
     direction: rtl;
+    ${mobile({
+        alignItems: "center",
+    })}
 `;
 
 const AboutUsTitle = styled.h4`
     margin: 0 0 0 10px;
     border-bottom: 1px solid black;
+    ${mobile({
+        marginBottom: "15px",
+        paddingBottom: "15px",
+        fontSize: "16px",
+        fontWeight: "bold",
+        border: "0",
+        textAlign: "center",
+    })}
 `;
 
 const AboutUsDesc = styled.div`
     font-size: 13px;
     font-weight: 400;
+    ${mobile({
+        marginBottom: "10px",
+        fontSize: "13px",
+        fontWeight: "500",
+        textAlign: "center",
+    })}
 `;
 
 const Footer = () => {
+    const { height, width } = useWindowDimensions();
+
     return (
         <Container>
             <Wrapper>
@@ -102,14 +150,18 @@ const Footer = () => {
                         <ColumnItem>تماس با ما</ColumnItem>
                         <ColumnItem>قوانین و مقررات</ColumnItem>
                     </Column>
-                    <Column>
+                    <Column
+                        style={{ display: `${width > 414 ? "block" : "none"}` }}
+                    >
                         <ColumnTitle>میانبر</ColumnTitle>
                         <ColumnItem>صفحه اصلی</ColumnItem>
                         <ColumnItem>درباره ما </ColumnItem>
                         <ColumnItem>تماس با ما</ColumnItem>
                         <ColumnItem>قوانین و مقررات</ColumnItem>
                     </Column>
-                    <Column>
+                    <Column
+                        style={{ display: `${width > 414 ? "block" : "none"}` }}
+                    >
                         <ColumnTitle>میانبر</ColumnTitle>
                         <ColumnItem>صفحه اصلی</ColumnItem>
                         <ColumnItem>درباره ما </ColumnItem>

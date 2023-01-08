@@ -7,12 +7,17 @@ import { news } from "../../../../data";
 import LinkWrapper from "../../../LinkWrapper";
 import truncateText from "../.././../../utils/truncateText";
 import Arrow from "./Arrow/Arrow";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
+import { mobile } from "../../../../responsive";
+
 const Carousel = styled(Slick)`
     max-width: 80vw;
+    ${mobile({ maxWidth: "100vw" })}
 `;
 
 const Container = styled.div`
     max-height: 80vh;
+    ${mobile({ width: "100vw" })}
 `;
 
 const Cart = styled.div`
@@ -51,11 +56,18 @@ const Bottom = styled.div`
 const Title = styled.h3`
     margin: 0 0 10px 0;
     direction: rtl;
+    ${mobile({
+        fontSize: "16px",
+        fontWeight: "bold",
+    })}
 `;
 
 const Desc = styled.div`
     direction: rtl;
     margin-bottom: 40px;
+    ${mobile({
+        fontSize: "14px",
+    })}
 `;
 
 const BottomBar = styled.div`
@@ -73,11 +85,13 @@ const SeeMoreButton = styled.button`
 `;
 
 const Slider = () => {
+    const { height, width } = useWindowDimensions();
+
     const settings = {
         dots: true,
         infinite: true,
         speed: 1500,
-        slidesToShow: 3,
+        slidesToShow: width > 415 ? 3 : 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,

@@ -5,6 +5,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import TemplateButton from "../../UI/TemplateButton";
 import HomeSectionContainer from "../HomeSectionContainer";
 import HomeSectionWrapper from "../HomeSectionWrapper";
+import { mobile } from "../../../responsive";
 
 const Top = styled.h2`
     margin-bottom: 40px;
@@ -18,6 +19,9 @@ const Bottom = styled.div`
 
 const Left = styled.div`
     flex: 5;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const Map = styled.img`
@@ -42,6 +46,9 @@ const WrapperRight = styled.div`
     justify-content: flex-start;
     align-items: center;
     direction: rtl;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const InfoSection = styled.div`
@@ -56,10 +63,25 @@ const InfoSection = styled.div`
 const Name = styled.input`
     flex: 1;
     margin-left: 20px;
+    ${mobile({
+        width: "100%",
+        padding: "12px 10px",
+        marginLeft: "0",
+        marginBottom: "20px",
+        fontSize: "16px",
+        boxSizing: "border-box",
+    })}
 `;
 
 const Email = styled.input`
     flex: 1;
+    ${mobile({
+        width: "100%",
+        padding: "12px 10px",
+        marginBottom: "20px",
+        fontSize: "16px",
+        boxSizing: "border-box",
+    })}
 `;
 
 const Message = styled.textarea`
@@ -68,12 +90,24 @@ const Message = styled.textarea`
     margin-bottom: 20px;
     box-sizing: border-box;
     resize: none;
+    ${mobile({
+        width: "100%",
+        height: "150px",
+        padding: "10px",
+        marginBottom: "60px",
+        fontSize: "16px",
+        boxSizing: "border-box",
+    })}
 `;
 
 const Submit = styled(TemplateButton)`
     width: 30%;
     height: 5%;
     margin-bottom: 20px;
+    ${mobile({
+        width: "100%",
+        height: "50px",
+    })}
 `;
 
 const Contacts = styled.div`
@@ -82,6 +116,9 @@ const Contacts = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const PhoneContact = styled.div`
@@ -89,6 +126,9 @@ const PhoneContact = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex: 1;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const EmailContact = styled.div`
@@ -108,6 +148,19 @@ const Circle = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+const MobileInputSection = styled.div`
+    width: 95vw;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    ${mobile({
+        display: "flex",
+    })};
+`;
+
 const ContactUs = () => {
     return (
         <HomeSectionContainer>
@@ -146,6 +199,13 @@ const ContactUs = () => {
                         </WrapperRight>
                     </Right>
                 </Bottom>
+
+                <MobileInputSection>
+                    <Name placeholder="نام و نام خانوادگی" />
+                    <Email placeholder="ایمیل" />
+                    <Message placeholder="پیام خود را در اینجا بنویسید" />{" "}
+                    <Submit>ارسال پیام</Submit>
+                </MobileInputSection>
             </HomeSectionWrapper>
         </HomeSectionContainer>
     );
