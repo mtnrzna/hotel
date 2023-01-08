@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LinkWrapper from "../../../LinkWrapper";
 import LikesButton from "../../../UI/LikesButton";
+import CapacityButton from "../../../UI/CapacityButton";
 import TemplateButton from "../../../UI/TemplateButton";
 import { mobile } from "../../../../responsive";
 
@@ -67,6 +68,12 @@ const BottomBar = styled.div`
     align-content: center;
 `;
 
+const IconsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 const ReserveButton = styled(TemplateButton)`
     height: 35px;
     width: 150px;
@@ -85,7 +92,10 @@ const Reserve = ({ item }) => {
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
                 <BottomBar>
-                    <LikesButton likeNumber={12} />
+                    <IconsWrapper>
+                        <LikesButton likeNumber={12} />
+                        <CapacityButton capacityNumber={4} />
+                    </IconsWrapper>
                     <LinkWrapper to={`/reserve/${item.id}`}>
                         <ReserveButton>رزرو</ReserveButton>
                     </LinkWrapper>

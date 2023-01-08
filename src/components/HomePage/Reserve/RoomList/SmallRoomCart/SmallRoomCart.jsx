@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import LikesButton from "../../../../UI/LikesButton";
+import CapacityButton from "../../../../UI/CapacityButton";
 import LinkWrapper from "../../../../LinkWrapper";
 import truncateText from "../../../../../utils/truncateText";
 import { mobile } from "../../../../../responsive";
@@ -81,6 +82,12 @@ const ReserveButton = styled.button`
     })}
 `;
 
+const IconsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 const SmallRoomCart = ({ room }) => {
     return (
         <Container>
@@ -99,7 +106,10 @@ const SmallRoomCart = ({ room }) => {
                             رزرو اتاق
                         </ReserveButton>
                     </LinkWrapper>
-                    <LikesButton likeNumber={12} />
+                    <IconsWrapper>
+                        <LikesButton likeNumber={18} />
+                        <CapacityButton capacityNumber={4} />
+                    </IconsWrapper>
                 </BottomBar>
             </Right>
         </Container>

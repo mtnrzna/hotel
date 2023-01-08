@@ -137,10 +137,10 @@ const Overlay = ({ onClick }) => {
                             </MenuItem>
                         </LinkWrapper>
                     </MenuItems>
-                    <LinkWrapper to="/signin">
+                    <LinkWrapper to="/signup">
                         <Signup>ثبت نام</Signup>
                     </LinkWrapper>
-                    <LinkWrapper to="/signup">
+                    <LinkWrapper to="/signin">
                         <Login>ورود</Login>
                     </LinkWrapper>
                 </BottomWrapper>

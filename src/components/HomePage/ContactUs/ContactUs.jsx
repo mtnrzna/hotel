@@ -203,7 +203,7 @@ const ContactUs = () => {
                 <MobileInputSection>
                     <Name placeholder="نام و نام خانوادگی" />
                     <Email placeholder="ایمیل" />
-                    <Message placeholder="پیام خود را در اینجا بنویسید" />{" "}
+                    <Message placeholder="پیام خود را در اینجا بنویسید" />
                     <Submit>ارسال پیام</Submit>
                 </MobileInputSection>
             </HomeSectionWrapper>

@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { bigRoom } from "../.././../../data";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LikesButton from "../../../UI/LikesButton";
+import CapacityButton from "../../../UI/CapacityButton";
 import LinkWrapper from "../../../LinkWrapper";
 import truncateText from "../../../../utils/truncateText";
 import { mobile } from "../../../../responsive";
@@ -61,11 +62,9 @@ const ReserveButton = styled.button`
     align-items: center;
 `;
 
-const LikesButton = styled.button`
-    background-color: transparent;
-    border: transparent;
-    font-weight: 600;
+const IconsWrapper = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
 `;
 
@@ -87,12 +86,10 @@ const BigCartRoom = () => {
                             رزرو اتاق
                         </ReserveButton>
                     </LinkWrapper>
-                    <LikesButton>
-                        12
-                        <FavoriteBorderIcon
-                            style={{ fontSize: "20px", marginLeft: "5px" }}
-                        />
-                    </LikesButton>
+                    <IconsWrapper>
+                        <LikesButton likeNumber={18} />
+                        <CapacityButton capacityNumber={4} />
+                    </IconsWrapper>
                 </BottomBar>
             </Bottom>
         </Container>

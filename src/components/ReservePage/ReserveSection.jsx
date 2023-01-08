@@ -259,19 +259,19 @@ const iconClasses = { color: "white", fontSize: "35px" };
 const icons = [
     {
         icon: <AutoGraphIcon style={iconClasses} />,
-        title: "آنالیز دقیق",
+        title: "امکانات به‌روز",
     },
     {
         icon: <FactCheckIcon style={iconClasses} />,
-        title: "تکونولوژی روز",
+        title: "لوکس",
     },
     {
         icon: <PhoneInTalkIcon style={iconClasses} />,
-        title: "پشتیبانی از شما",
+        title: "رزرو آنلاین",
     },
     {
         icon: <LocalOfferIcon style={iconClasses} />,
-        title: "قیمت‌ها",
+        title: "تضمین قیمت",
     },
 ];
 

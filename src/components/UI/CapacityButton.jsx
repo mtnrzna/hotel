@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import PersonIcon from "@mui/icons-material/Person";
 
 const Button = styled.button`
     background-color: transparent;
@@ -10,15 +10,15 @@ const Button = styled.button`
     align-items: center;
 `;
 
-const LikesButton = ({ likeNumber }) => {
+const CapacityButton = ({ capacityNumber }) => {
     return (
         <Button>
-            <FavoriteBorderIcon
-                style={{ fontSize: "20px", marginLeft: "5px" }}
+            <PersonIcon
+                style={{ fontSize: "20px", marginLeft: "5px", color: "black" }}
             />
-            {likeNumber}
+            {capacityNumber}
         </Button>
     );
 };
 
-export default LikesButton;
+export default CapacityButton;
