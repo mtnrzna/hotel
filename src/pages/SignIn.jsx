@@ -8,6 +8,7 @@ import Input from "../components/AuthPages/Input/Input";
 import SubmitButton from "../components/AuthPages/SubmitButton/SubmitButton";
 import SignInWithGoogle from "../components/AuthPages/SignInWithGoogle/SignInWithGoogle";
 import LinkWrapper from "../components/LinkWrapper";
+import { mobile } from "../responsive";
 
 const ForgotPassContainer = styled.div`
     width: 100%;
@@ -21,6 +22,9 @@ const ForgotPassContainer = styled.div`
 const ForgotPass = styled.div`
     margin-right: 5px;
     font-weight: bold;
+    ${mobile({
+        marginBottom: "20px",
+    })}
 `;
 
 const OrSec = styled.div`

@@ -6,6 +6,7 @@ import Template from "../components/AuthPages/Template";
 import Title from "../components/AuthPages/Title/Title";
 import Input from "../components/AuthPages/Input/Input";
 import SubmitButton from "../components/AuthPages/SubmitButton/SubmitButton";
+import { mobile } from "../responsive";
 
 const TermsContainer = styled.div`
     width: 100%;
@@ -13,12 +14,18 @@ const TermsContainer = styled.div`
     flex: 1;
     display: flex;
     justify-content: start;
+    ${mobile({
+        marginBottom: "20px",
+    })}
 `;
 
 const TermsCheck = styled.input``;
 
 const Terms = styled.div`
     font-size: 12px;
+    ${mobile({
+        fontSize: "16px",
+    })}
 `;
 
 const SignUp = () => {

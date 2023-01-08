@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GoogleIcon from "@mui/icons-material/Google";
+import { mobile } from "../../../responsive";
 
 const CustomButton = styled.button`
     width: 100%;
@@ -16,6 +17,11 @@ const CustomButton = styled.button`
     &:active {
         background-color: #efefef;
     }
+    ${mobile({
+        width: "100%",
+        height: "60px",
+        fontSize: "16px",
+    })}
 `;
 
 const GIcon = styled(GoogleIcon)`
