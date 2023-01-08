@@ -12,6 +12,13 @@ import Reserve from "./pages/Reserve";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./utils/scrollTotop";
+import AdminPanelRooms from "./pages/AdminPanelRooms";
+import AdminPanelContacts from "./pages/AdminPanelContacts";
+import AdminPanelNews from "./pages/AdminPanelNews";
+import AdminPanelReserves from "./pages/AdminPanelReserves";
+import AdminPanelUsers from "./pages/AdminPanelUsers";
+import AdminPanelCreateNews from "./pages/AdminPanelCreateNews";
+import AdminPanelCreateRoom from "./pages/AdminPanelCreateRoom";
 
 function App() {
     const user = false;
@@ -37,6 +44,14 @@ function App() {
                 <Route path="/reserves" element={<Reserves />} />
                 <Route path="/reserve/:id" element={<Reserve />} />
                 <Route path="/news/:id" element={<News />} />
+                <Route path="/adminpanelrooms" element={<AdminPanelRooms />} />
+                <Route path="/adminpanelcontacts" element={<AdminPanelContacts />} />
+                <Route path="/adminpanelreserves" element={<AdminPanelReserves />} />
+                <Route path="/adminpanelusers" element={<AdminPanelUsers />} />
+                <Route path="/adminpanelcreatenews" element={<AdminPanelCreateNews />} />
+                <Route path="/adminpanelcreateroom" element={<AdminPanelCreateRoom />} />
+                <Route path="/adminpanelnews" element={<AdminPanelNews />} />
+               
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

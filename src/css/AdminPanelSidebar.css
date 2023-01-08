@@ -1,0 +1,9 @@
+.side-bar{
+    width:277px;
+    border: 1px solid black;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 80px;
+    flex-direction: column;
+}
