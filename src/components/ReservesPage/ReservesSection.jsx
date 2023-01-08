@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Container from "../Container";
 import Wrapper from "../Wrapper";
 import ReserveList from "./ReserveList/ResereveList";
+import { mobile } from "../../responsive";
 
 const Top = styled.div`
     width: 100%;
@@ -10,7 +11,12 @@ const Top = styled.div`
     justify-content: flex-end;
 `;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+    ${mobile({
+        width: "100%",
+        textAlign: "center",
+    })}
+`;
 
 const Bottom = styled.div``;
 
