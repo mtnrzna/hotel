@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const WrapperDiv = styled.div`
     width: 80%;
@@ -14,6 +15,12 @@ const WrapperDiv = styled.div`
     box-shadow: 0px 5px 10px 0px #dddddd;
     box-sizing: border-box;
     overflow: hidden;
+    ${mobile({
+        width: "100%",
+        padding: "0",
+        margin: "0",
+        boxShadow: "none",
+    })}
 `;
 
 const Wrapper = ({ children, style }) => {

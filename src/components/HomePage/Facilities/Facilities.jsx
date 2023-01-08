@@ -8,6 +8,8 @@ import WifiIcon from "@mui/icons-material/Wifi";
 import FlatwareIcon from "@mui/icons-material/Flatware";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import TourIcon from "@mui/icons-material/Tour";
+import { mobile } from "../../../responsive";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 const Top = styled.h2`
     margin-bottom: 40px;
@@ -30,16 +32,27 @@ const Cart = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        width: "60vw",
+    })}
 `;
 
 const IconContainer = styled.div`
     font-size: 60px;
 `;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+    ${mobile({
+        fontSize: "16px",
+        fontWeight: "bold",
+    })}
+`;
 
 const Desc = styled.div`
     text-align: center;
+    ${mobile({
+        fontSize: "14px",
+    })}
 `;
 
 const facilities = [
@@ -75,12 +88,13 @@ const facilities = [
     },
 ];
 const Facilities = () => {
+    const { height, width } = useWindowDimensions();
     return (
         <HomeSectionContainer>
             <HomeSectionWrapper>
                 <Top>امکانات هتل ما</Top>
                 <Bottom>
-                    {facilities.map((f) => (
+                    {facilities.slice(0, width > 415 ? 6 : 3).map((f) => (
                         <Cart key={f.icon}>
                             <IconContainer>{f.icon}</IconContainer>
                             <Title>{f.title}</Title>

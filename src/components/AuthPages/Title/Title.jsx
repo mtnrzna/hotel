@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../../../responsive";
 
 const Container = styled.div`
     width: 100%;
@@ -8,7 +9,13 @@ const Container = styled.div`
     margin-bottom: 20px;
 `;
 
-const CustomHTag = styled.h3``;
+const CustomHTag = styled.h3`
+    ${mobile({
+        width: "100%",
+        textAlign: "center",
+        fontSize: "20px",
+    })}
+`;
 
 const SubmitButton = ({ children }) => {
     return (

@@ -4,6 +4,8 @@ import Container from "../components/Container";
 import LinkWrapper from "../components/LinkWrapper";
 import Wrapper from "../components/Wrapper";
 import TemplateButton from "../components/UI/TemplateButton";
+import useWindowDimensions from "../hooks/useWindowDimensions";
+
 const Top = styled.div`
     width: 100%;
     height: 90%;
@@ -34,12 +36,18 @@ const RedirectButtom = styled(TemplateButton)`
 `;
 
 const NotFoundSection = () => {
+    const { height, width } = useWindowDimensions();
+
     return (
         <Container
-            style={{
-                height: "calc(100vh - 80px)",
-                backgroundColor: "#FBFBFB",
-            }}
+            style={
+                width > 414
+                    ? {
+                          height: "calc(100vh - 80px)",
+                          backgroundColor: "#FBFBFB",
+                      }
+                    : { paddingBottom: "90px", backgroundColor: "#FBFBFB" }
+            }
         >
             <Wrapper
                 style={{

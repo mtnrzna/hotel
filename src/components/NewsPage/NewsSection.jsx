@@ -4,10 +4,16 @@ import Container from "../Container";
 import Wrapper from "../Wrapper";
 import { useLocation } from "react-router-dom";
 import { long_news } from "../../data";
+import { mobile } from "../../responsive";
 
 const Image = styled.img`
     width: 500px;
     height: 500px;
+    object-fit: cover;
+    ${mobile({
+        height: "300px",
+        marginBottom: "20px",
+    })}
 `;
 
 const Title = styled.h4``;

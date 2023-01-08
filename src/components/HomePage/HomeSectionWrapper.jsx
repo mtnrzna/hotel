@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../../responsive";
 
 const WrapperDiv = styled.div`
     width: 80%;
@@ -8,6 +9,9 @@ const WrapperDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        width: "100%",
+    })}
 `;
 
 const HomeSectionWrapper = ({ children, style }) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../../../responsive";
 import TemplateButton from "../../UI/TemplateButton";
 
 const CustomButton = styled(TemplateButton)`
@@ -10,6 +11,11 @@ const CustomButton = styled(TemplateButton)`
     &:active {
         background-color: #2f81edde;
     }
+    ${mobile({
+        width: "100%",
+        height: "60px",
+        fontSize: "16px",
+    })}
 `;
 
 const SubmitButton = ({ children }) => {

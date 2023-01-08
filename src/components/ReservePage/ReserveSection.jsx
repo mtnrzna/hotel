@@ -10,11 +10,15 @@ import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import TemplateButton from "../UI/TemplateButton";
+import { mobile } from "../../responsive";
 
 const Top = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        flexDirection: "column",
+    })}
 `;
 
 const TopLeft = styled.div`
@@ -29,6 +33,10 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 400px;
     object-fit: cover;
+    ${mobile({
+        height: "300px",
+        marginBottom: "20px",
+    })}
 `;
 
 const Image = styled.img`
@@ -41,6 +49,9 @@ const IconsContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const IconContainer = styled.div`
@@ -67,6 +78,10 @@ const TopRight = styled.div`
     margin-left: 50px;
     flex: 1;
     direction: rtl;
+    ${mobile({
+        padding: "0 20px",
+        marginLeft: "0",
+    })}
 `;
 
 const RoomTitle = styled.h3``;
@@ -104,6 +119,9 @@ const FacilitiesItem = styled.li`
 
 const Center = styled.div`
     direction: rtl;
+    ${mobile({
+        padding: "0 20px",
+    })}
 `;
 
 const TermsTitle = styled.h4`
@@ -126,6 +144,9 @@ const Bottom = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        padding: "0 20px",
+    })}
 `;
 
 const BottomLeft = styled.div`
@@ -134,6 +155,9 @@ const BottomLeft = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    ${mobile({
+        display: "none",
+    })}
 `;
 
 const BigImageContainer = styled.div`
@@ -153,6 +177,7 @@ const SmallImageContainer = styled.div`
     margin: 10px;
     height: 80%;
     width: 100%;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
@@ -175,6 +200,9 @@ const DateSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+    ${mobile({
+        width: "100%",
+    })}
 `;
 
 const Label = styled.label`
@@ -185,6 +213,10 @@ const Label = styled.label`
 const DateInput = styled.input`
     padding: 2px;
     font-weight: bold;
+    ${mobile({
+        border: "0px",
+        textAlign: "center",
+    })}
 `;
 
 const NumbersSection = styled.div`
@@ -204,9 +236,22 @@ const NumberSection = styled.div`
 
 const NumberInput = styled.input``;
 
+const ReserveButtonContainer = styled.div`
+    ${mobile({
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItem: "center",
+    })}
+`;
+
 const ReserveButton = styled(TemplateButton)`
     height: 35px;
     width: 150px;
+    ${mobile({
+        width: "80%",
+        height: "40px",
+    })}
 `;
 
 const iconClasses = { color: "white", fontSize: "35px" };
@@ -214,19 +259,19 @@ const iconClasses = { color: "white", fontSize: "35px" };
 const icons = [
     {
         icon: <AutoGraphIcon style={iconClasses} />,
-        title: "آنالیز دقیق",
+        title: "امکانات به‌روز",
     },
     {
         icon: <FactCheckIcon style={iconClasses} />,
-        title: "تکونولوژی روز",
+        title: "لوکس",
     },
     {
         icon: <PhoneInTalkIcon style={iconClasses} />,
-        title: "پشتیبانی از شما",
+        title: "رزرو آنلاین",
     },
     {
         icon: <LocalOfferIcon style={iconClasses} />,
-        title: "قیمت‌ها",
+        title: "تضمین قیمت",
     },
 ];
 
@@ -343,7 +388,9 @@ const ReserveSection = () => {
                                 />
                             </NumberSection>
                         </NumbersSection>
-                        <ReserveButton>رزرو</ReserveButton>
+                        <ReserveButtonContainer>
+                            <ReserveButton>رزرو</ReserveButton>
+                        </ReserveButtonContainer>
                     </BottomRight>
                 </Bottom>
             </Wrapper>

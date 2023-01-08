@@ -2,18 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import LinkWrapper from "../../LinkWrapper";
 import TemplateButton from "../../UI/TemplateButton";
+import { mobile } from "../.././../responsive";
 
 const Container = styled.div`
     height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mobile({
+        height: "calc(100vh - 80px)",
+    })}
 `;
 
 const Wrapper = styled.div`
     width: 80%;
     display: flex;
     justify-content: space-between;
+    ${mobile({
+        flexDirection: "column",
+        width: "70%",
+    })}
 `;
 
 const Left = styled.div`
@@ -22,6 +30,7 @@ const Left = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mobile({ flex: "3", marginBottom: "20px" })}
 `;
 
 const Hero = styled.img`
@@ -34,14 +43,27 @@ const Right = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
+    ${mobile({
+        flex: "2",
+        alignItems: "center",
+    })}
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+    ${mobile({
+        fontSize: "22px",
+        textAlign: "center",
+    })}
+`;
 
 const Desc = styled.div`
     direction: rtl;
     margin-bottom: 30px;
     font-size: 16px;
+    ${mobile({
+        width: "100%",
+        textAlign: "center",
+    })}
 `;
 
 const ReserveButton = styled(TemplateButton)`
