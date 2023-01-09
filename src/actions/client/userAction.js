@@ -5,9 +5,9 @@ import {
     REGISTER_USER_FAIL,
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
-} from "../constants/userConstants";
+} from "../../constants/client/userConstants";
 
-import { axiosInstance } from "../interceptor/interceptor";
+import { axiosInstance } from "../../interceptor/interceptor";
 
 // SignUp User
 export const registerUser = (userData) => async (dispatch) => {

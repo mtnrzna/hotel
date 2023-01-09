@@ -10,7 +10,7 @@ import { mobile } from "../../../responsive";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { loginUser } from "../../../actions/userAction";
+import { loginUser } from "../../../actions/client/userAction";
 import BackdropLoader from "../../Layouts/BackdropLoader";
 
 const ForgotPassContainer = styled.div`
@@ -66,7 +66,6 @@ const SignInSection = () => {
         e.preventDefault();
 
         dispatch(loginUser(email, password));
-        console.log(email, password);
         setEmail("");
         setPassword("");
     };

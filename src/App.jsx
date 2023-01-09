@@ -13,9 +13,11 @@ import Reserve from "./pages/Reserve";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./utils/scrollTotop";
+import { useSelector } from "react-redux";
 
 function App() {
-    const user = false;
+    const { isAuthenticated } = useSelector((state) => state.user);
+    console.log(isAuthenticated);
     return (
         <BrowserRouter>
             <ScrollToTop />
@@ -25,15 +27,17 @@ function App() {
                 <Route path="about-us" element={<AboutUs />} />
                 <Route
                     path="/signin"
-                    element={user ? <Navigate to="/" /> : <SignIn />}
+                    element={isAuthenticated ? <Navigate to="/" /> : <SignIn />}
                 />
                 <Route
                     path="/signup"
-                    element={user ? <Navigate to="/" /> : <SignUp />}
+                    element={isAuthenticated ? <Navigate to="/" /> : <SignUp />}
                 />
                 <Route
                     path="/forgot-password"
-                    element={user ? <Navigate to="/" /> : <ForgotPass />}
+                    element={
+                        isAuthenticated ? <Navigate to="/" /> : <ForgotPass />
+                    }
                 />
                 <Route path="/reserves" element={<Reserves />} />
                 <Route path="/reserve/:id" element={<Reserve />} />

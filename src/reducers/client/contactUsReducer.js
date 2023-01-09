@@ -2,7 +2,7 @@ import {
     NEW_CONTACTUS_FAIL,
     NEW_CONTACTUS_REQUEST,
     NEW_CONTACTUS_SUCCESS,
-} from "../constants/contactUsConstants";
+} from "../../constants/client/contactUsConstants";
 
 // New ContactUS Reducer
 export const newContactUsReducer = (

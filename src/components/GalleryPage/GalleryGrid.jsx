@@ -5,7 +5,7 @@ import Wrapper from "../Wrapper";
 import { mobile } from "../../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { getGallery } from "../../actions/galleryAction";
+import { getGallery } from "../../actions/client/galleryAction";
 import BackdropLoader from "../Layouts/BackdropLoader";
 
 const Top = styled.h3`

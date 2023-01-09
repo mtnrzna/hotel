@@ -9,7 +9,7 @@ import { mobile } from "../../../responsive";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { addNewContactUs } from "../../../actions/contactUsAction";
+import { addNewContactUs } from "../../../actions/client/contactUsAction";
 
 const Top = styled.h2`
     margin-bottom: 40px;

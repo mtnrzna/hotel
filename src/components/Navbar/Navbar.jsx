@@ -113,12 +113,7 @@ const Logo = styled.img`
 `;
 
 const Navbar = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const { loading, isAuthenticated, error, registered } = useSelector(
-        (state) => state.user
-    );
+    const { isAuthenticated } = useSelector((state) => state.user);
 
     const path = useLocation().pathname;
     const [overlayStatus, setOverlayStatus] = useState(false);

@@ -2,8 +2,8 @@ import {
     NEW_CONTACTUS_FAIL,
     NEW_CONTACTUS_REQUEST,
     NEW_CONTACTUS_SUCCESS,
-} from "../constants/contactUsConstants";
-import { axiosInstance } from "../interceptor/interceptor";
+} from "../../constants/client/contactUsConstants";
+import { axiosInstance } from "../../interceptor/interceptor";
 
 // New ContactUs
 export const addNewContactUs = (contactUsData) => async (dispatch) => {

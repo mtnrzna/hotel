@@ -2,7 +2,7 @@ import {
     ALL_GALLERY_PICS_FAIL,
     ALL_GALLERY_PICS_REQUEST,
     ALL_GALLERY_PICS_SUCCESS,
-} from "../constants/galleryConstants";
+} from "../../constants/client/galleryConstants";
 
 export const galleryReducer = (state = { gallery: [] }, { type, payload }) => {
     switch (type) {

@@ -8,7 +8,7 @@ import LinkWrapper from "../../LinkWrapper";
 import { mobile } from "../../../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../../actions/userAction";
+import { registerUser } from "../../../actions/client/userAction";
 import { toast } from "react-toastify";
 import BackdropLoader from "../../Layouts/BackdropLoader";
 
@@ -63,13 +63,6 @@ const SignUpSection = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password_confirmation, setPassword_Confirmation] = useState("");
-    const [user, setUser] = useState({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation,
-    });
 
     //const [avatar, setAvatar] = useState();
     //const [avatarPreview, setAvatarPreview] = useState();
@@ -86,14 +79,15 @@ const SignUpSection = () => {
         //    return;
         //}
 
-        setUser({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            password_confirmation: password_confirmation,
-        });
-        dispatch(registerUser(user));
+        dispatch(
+            registerUser({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                password_confirmation: password_confirmation,
+            })
+        );
     };
 
     useEffect(() => {
@@ -126,10 +120,7 @@ const SignUpSection = () => {
                     placeholder="نام"
                     name="firstName"
                     value={firstName}
-                    onChange={(e) => {
-                        setFirstName(e.target.value);
-                        console.log(firstName);
-                    }}
+                    onChange={(e) => setFirstName(e.target.value)}
                 />
                 <Input
                     placeholder="نام خانوادگی"
@@ -141,27 +132,21 @@ const SignUpSection = () => {
                     placeholder="ایمیل"
                     name="email"
                     value={email}
-                    onChange={(e) => {
-                        setEmail(e.target.value);
-                    }}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="email"
                 />
                 <Input
                     placeholder="رمز عبور"
                     name="password"
                     value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                    }}
+                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
                 />
                 <Input
                     placeholder="تکرار رمز عبور"
                     name="password_confirmation"
                     value={password_confirmation}
-                    onChange={(e) => {
-                        setPassword_Confirmation(e.target.value);
-                    }}
+                    onChange={(e) => setPassword_Confirmation(e.target.value)}
                     type="password"
                 />
                 <TermsContainer>

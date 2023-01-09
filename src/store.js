@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { userReducer } from "./reducers/userReducer";
 import { configureStore } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { galleryReducer } from "./reducers/galleryReducer";
-import { newContactUsReducer } from "./reducers/contactUsReducer";
+import { userReducer } from "./reducers/client/userReducer";
+import { chosenRoomsReducer } from "./reducers/client/roomReducer";
+import { galleryReducer } from "./reducers/client/galleryReducer";
+import { newContactUsReducer } from "./reducers/client/contactUsReducer";
 
 const reducer = combineReducers({
     user: userReducer,
+    chosenRooms: chosenRoomsReducer,
     gallery: galleryReducer,
     newContactUs: newContactUsReducer,
 });

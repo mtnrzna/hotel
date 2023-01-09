@@ -1,10 +1,9 @@
-import axios from "axios";
 import {
     ALL_GALLERY_PICS_FAIL,
     ALL_GALLERY_PICS_REQUEST,
     ALL_GALLERY_PICS_SUCCESS,
-} from "../constants/galleryConstants";
-import { axiosInstance } from "../interceptor/interceptor";
+} from "../../constants/client/galleryConstants";
+import { axiosInstance } from "../../interceptor/interceptor";
 
 // Get All Galley Pics
 export const getGallery = () => async (dispatch) => {
