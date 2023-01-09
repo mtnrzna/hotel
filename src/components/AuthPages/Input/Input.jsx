@@ -9,6 +9,7 @@ const CustomInput = styled.input`
     border: 1px solid #cbcbcb;
     border-radius: 3px;
     box-sizing: border-box;
+    direction:rtl;
     ${mobile({
         width: "100%",
         padding: "16px 10px",
@@ -18,8 +19,8 @@ const CustomInput = styled.input`
     })}
 `;
 
-const Input = ({ placeholder, name, type = "text" }) => {
-    return <CustomInput placeholder={placeholder} name={name} type={type} />;
+const Input = ({ placeholder, name, type = "text" ,style}) => {
+    return <CustomInput style={style} placeholder={placeholder} name={name} type={type} />;
 };
 
 export default Input;

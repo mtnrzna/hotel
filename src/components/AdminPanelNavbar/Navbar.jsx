@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import LinkWrapper from ".././LinkWrapper";
 
-
 const Container = styled.div`
   height: 80px;
   display: flex;
@@ -36,10 +35,8 @@ const UserProfile = styled.button`
   font-weight: 500;
   border: 1px solid black;
   font-size: 1rem;
-  padding:5px 10px;
+  padding: 5px 10px;
 `;
-
-
 
 const Right = styled.div`
   flex: 1;
@@ -59,21 +56,27 @@ const Logo = styled.img`
   width: 30px;
 `;
 
-const Navbar = () => {
+const Navbar = ({ userPanel }) => {
   const path = useLocation().pathname;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [path]);
-
+  console.log(userPanel);
   return (
     <div>
       <Container>
         <Wrapper>
           <Left>
-            <LinkWrapper to="/adminpanelrooms">
-              <UserProfile> حساب کاربری</UserProfile>
-            </LinkWrapper>
+            {userPanel ? (
+              <LinkWrapper to="/userpanelreserves">
+                <UserProfile> حساب کاربری</UserProfile>
+              </LinkWrapper>
+            ) : (
+              <LinkWrapper to="/adminpanelrooms">
+                <UserProfile> حساب کاربری</UserProfile>
+              </LinkWrapper>
+            )}
           </Left>
 
           <Right>
