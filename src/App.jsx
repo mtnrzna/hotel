@@ -27,65 +27,90 @@ import UserPanelReserves from "./pages/UserPanelReserves";
 import UserPanelProfile from "./pages/UserPanelProfile";
 import { useSelector } from "react-redux";
 function App() {
-  const admin = false;
-  const { isAuthenticated } = useSelector((state) => state.user);
-  console.log(isAuthenticated);
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="about-us" element={<AboutUs />} />
-        <Route
-          path="/signin"
-          element={isAuthenticated ? <Navigate to="/" /> : <SignIn />}
-        />
-        <Route
-          path="/signup"
-          element={isAuthenticated ? <Navigate to="/" /> : <SignUp />}
-        />
-        <Route
-          path="/forgot-password"
-          element={isAuthenticated ? <Navigate to="/" /> : <ForgotPass />}
-        />
-        <Route path="/reserves" element={<Reserves />} />
-        <Route path="/reserve/:id" element={<Reserve />} />
-        <Route path="/news/:id" element={<News />} />
-        <Route path="/adminpanelrooms" element={<AdminPanelRooms />} />
-        <Route path="/adminpanelcontacts" element={<AdminPanelContacts />} />
-        <Route path="/adminpanelreserves" element={<AdminPanelReserves />} />
-        <Route path="/adminpanelusers" element={<AdminPanelUsers />} />
-        <Route
-          path="/adminpanelcreatenews"
-          element={<AdminPanelCreateNews />}
-        />
-        <Route
-          path="/adminpanelcreateroom"
-          element={<AdminPanelCreateRoom />}
-        />
-        <Route path="/adminpanelnews" element={<AdminPanelNews />} />
+    const admin = false;
+    const { isAuthenticated } = useSelector((state) => state.user);
+    console.log(isAuthenticated);
+    return (
+        <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="about-us" element={<AboutUs />} />
+                <Route
+                    path="/signin"
+                    element={isAuthenticated ? <Navigate to="/" /> : <SignIn />}
+                />
+                <Route
+                    path="/signup"
+                    element={isAuthenticated ? <Navigate to="/" /> : <SignUp />}
+                />
+                <Route
+                    path="/forgot-password"
+                    element={
+                        isAuthenticated ? <Navigate to="/" /> : <ForgotPass />
+                    }
+                />
+                <Route path="/reserves" element={<Reserves />} />
+                <Route path="/reserve/:id" element={<Reserve />} />
+                <Route path="/news/:id" element={<News />} />
+                <Route path="/adminpanelrooms" element={<AdminPanelRooms />} />
+                <Route
+                    path="/adminpanelcontacts"
+                    element={<AdminPanelContacts />}
+                />
+                <Route
+                    path="/adminpanelreserves"
+                    element={<AdminPanelReserves />}
+                />
+                <Route path="/adminpanelusers" element={<AdminPanelUsers />} />
+                <Route
+                    path="/adminpanelcreatenews"
+                    element={<AdminPanelCreateNews />}
+                />
+                <Route
+                    path="/adminpanelcreateroom"
+                    element={<AdminPanelCreateRoom />}
+                />
+                <Route path="/adminpanelnews" element={<AdminPanelNews />} />
 
-        <Route
-          path="/signinadmin"
-          element={!admin ? <Navigate to="/" /> : <SignInAdmin />}
-        />
-        <Route
-          path="/signupadmin"
-          element={!admin ? <Navigate to="/" /> : <SignUpAdmin />}
-        />
-        <Route
-          path="/userpanelreserves"
-          element={isAuthenticated ? <UserPanelReserves /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/userpanelprofile"
-          element={isAuthenticated ? <UserPanelProfile /> : <Navigate to="/" />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  );
-
-  }
+                <Route
+                    path="/signinadmin"
+                    element={
+                        admin ? (
+                            <Navigate to="/adminpanelrooms" />
+                        ) : (
+                            <SignInAdmin />
+                        )
+                    }
+                />
+                {/* {<Route
+                    path="/signupadmin"
+                    element={admin ? <Navigate to="/" /> : <SignUpAdmin />}
+                />} */}
+                <Route
+                    path="/userpanelreserves"
+                    element={
+                        isAuthenticated ? (
+                            <UserPanelReserves />
+                        ) : (
+                            <Navigate to="/" />
+                        )
+                    }
+                />
+                <Route
+                    path="/userpanelprofile"
+                    element={
+                        isAuthenticated ? (
+                            <UserPanelProfile />
+                        ) : (
+                            <Navigate to="/" />
+                        )
+                    }
+                />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
 export default App;

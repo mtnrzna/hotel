@@ -1,11 +1,11 @@
 import React from "react";
 
-import SignInSection from "../components/AuthPages/SignInSection/SignInAdminSection";
+import SignInAdminSection from "../components/AuthPages/SignInSection/SignInAdminSection";
 
 const SignInAdmin = () => {
     return (
         <div>
-            <SignInSection />
+            <SignInAdminSection />
         </div>
     );
 };
