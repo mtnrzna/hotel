@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Template from "../Template";
 import Title from "../Title/Title";
@@ -7,6 +7,11 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import SignInWithGoogle from "../SignInWithGoogle/SignInWithGoogle";
 import LinkWrapper from "../../LinkWrapper";
 import { mobile } from "../../../responsive";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { loginUser } from "../../../actions/userAction";
+import BackdropLoader from "../../Layouts/BackdropLoader";
 
 const ForgotPassContainer = styled.div`
     width: 100%;
@@ -47,36 +52,76 @@ const Or = styled.div`
 `;
 
 const SignInSection = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { loading, isAuthenticated, error, registered } = useSelector(
+        (state) => state.user
+    );
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        dispatch(loginUser(email, password));
+        console.log(email, password);
+        setEmail("");
+        setPassword("");
+    };
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+        if (isAuthenticated) {
+            navigate("/");
+            toast.success("خوش آمدید.");
+        }
+    }, [dispatch, error, isAuthenticated, registered, navigate]);
+
     return (
-        <Template>
-            <Title>خوش آمدید</Title>
-            <Input placeholder={"ایمیل"} name={"email"} />
-            <Input
-                placeholder={"رمز عبور"}
-                name={"password"}
-                type={"password"}
-            />
-            <ForgotPassContainer>
-                رمز عبور خود را فراموش کرده‌اید؟
-                <ForgotPass>
-                    <LinkWrapper
-                        to="/forgot-password"
-                        style={{
-                            textDecoration: "underline",
-                        }}
-                    >
-                        فراموشی رمز عبور
-                    </LinkWrapper>
-                </ForgotPass>
-            </ForgotPassContainer>
-            <SubmitButton>ورود</SubmitButton>
-            <OrSec>
-                <Bar />
-                <Or>یا</Or>
-                <Bar />
-            </OrSec>
-            <SignInWithGoogle />
-        </Template>
+        <>
+            {loading && <BackdropLoader />}
+            <Template onSubmit={handleLogin}>
+                <Title>خوش آمدید</Title>
+                <Input
+                    placeholder="ایمیل"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                />
+                <Input
+                    placeholder="رمز عبور"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                />
+                <ForgotPassContainer>
+                    رمز عبور خود را فراموش کرده‌اید؟
+                    <ForgotPass>
+                        <LinkWrapper
+                            to="/forgot-password"
+                            style={{
+                                textDecoration: "underline",
+                            }}
+                        >
+                            فراموشی رمز عبور
+                        </LinkWrapper>
+                    </ForgotPass>
+                </ForgotPassContainer>
+                <SubmitButton>ورود</SubmitButton>
+                <OrSec>
+                    <Bar />
+                    <Or>یا</Or>
+                    <Bar />
+                </OrSec>
+                <SignInWithGoogle />
+            </Template>
+        </>
     );
 };
 

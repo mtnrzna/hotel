@@ -25,3 +25,7 @@ div {
 button {
     cursor: pointer;
 }
+
+.Toastify__toast-body {
+    font-family: "Vazir";
+}

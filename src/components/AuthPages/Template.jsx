@@ -32,7 +32,7 @@ const Right = styled.div`
     })}
 `;
 
-const Content = styled.div`
+const Content = styled.form`
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -43,9 +43,8 @@ const Content = styled.div`
     })}
 `;
 
-const Template = ({ children }) => {
+const Template = ({ children, onSubmit }) => {
     const { height, width } = useWindowDimensions();
-
     return (
         <Container
             style={
@@ -67,7 +66,7 @@ const Template = ({ children }) => {
                     <Image src="/images/auth.png" />
                 </Left>
                 <Right>
-                    <Content>{children}</Content>
+                    <Content onSubmit={onSubmit}>{children}</Content>
                 </Right>
             </Wrapper>
         </Container>

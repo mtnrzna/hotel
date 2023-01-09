@@ -5,7 +5,7 @@ import { mobile } from "../../../responsive";
 const CustomInput = styled.input`
     width: 100%;
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border: 1px solid #cbcbcb;
     border-radius: 3px;
     box-sizing: border-box;
@@ -18,8 +18,15 @@ const CustomInput = styled.input`
     })}
 `;
 
-const Input = ({ placeholder, name, type = "text" }) => {
-    return <CustomInput placeholder={placeholder} name={name} type={type} />;
+const Input = ({ placeholder, name, type = "text", onChange }) => {
+    return (
+        <CustomInput
+            placeholder={placeholder}
+            name={name}
+            type={type}
+            onChange={onChange}
+        />
+    );
 };
 
 export default Input;
