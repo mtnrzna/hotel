@@ -56,26 +56,9 @@ const SignInSection = () => {
                 name={"password"}
                 type={"password"}
             />
-            {/* <ForgotPassContainer>
-                رمز عبور خود را فراموش کرده‌اید؟
-                <ForgotPass>
-                    <LinkWrapper
-                        to="/forgot-password"
-                        style={{
-                            textDecoration: "underline",
-                        }}
-                    >
-                        فراموشی رمز عبور
-                    </LinkWrapper>
-                </ForgotPass>
-            </ForgotPassContainer> */}
+
             <SubmitButton>ورود</SubmitButton>
-            {/* <OrSec>
-                <Bar />
-                <Or>یا</Or>
-                <Bar />
-            </OrSec>
-            <SignInWithGoogle /> */}
+ 
         </Template>
     );
 };

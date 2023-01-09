@@ -73,6 +73,7 @@ export default function DataGridDemo() {
           experimentalFeatures={{ newEditingApi: true }}
         />
       </Box>
+
     </Center>
   );
 }

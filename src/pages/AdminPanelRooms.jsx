@@ -7,7 +7,7 @@ const AdminPanelRooms = () => {
         <div>
             <Navbar/>
             <Sidebar/>
-             <DataGridRooms/>
+            <DataGridRooms/>
         </div>
     );
 };

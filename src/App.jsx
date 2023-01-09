@@ -19,9 +19,12 @@ import AdminPanelReserves from "./pages/AdminPanelReserves";
 import AdminPanelUsers from "./pages/AdminPanelUsers";
 import AdminPanelCreateNews from "./pages/AdminPanelCreateNews";
 import AdminPanelCreateRoom from "./pages/AdminPanelCreateRoom";
+import SignInAdmin from "./pages/SignInAdmin";
+import SignUpAdmin from "./pages/SignUpAdmin";
 
 function App() {
     const user = false;
+    const admin = false;
     return (
         <BrowserRouter>
             <ScrollToTop />
@@ -50,8 +53,15 @@ function App() {
                 <Route path="/adminpanelusers" element={<AdminPanelUsers />} />
                 <Route path="/adminpanelcreatenews" element={<AdminPanelCreateNews />} />
                 <Route path="/adminpanelcreateroom" element={<AdminPanelCreateRoom />} />
-                <Route path="/adminpanelnews" element={<AdminPanelNews />} />
-               
+                <Route path="/adminpanelnews" element={<AdminPanelNews />} />     
+                <Route
+                    path="/signinadmin"
+                    element={admin ? <Navigate to="/" /> : <SignInAdmin />}
+                />
+                <Route
+                    path="/signupadmin"
+                    element={admin ? <Navigate to="/" /> : <SignUpAdmin />}
+                />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

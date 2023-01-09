@@ -1,8 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef, GridValueGetterParams  } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import styled from "styled-components";
 import { Button } from "@mui/material";
+import LinkWrapper from ".././LinkWrapper";
+
 const columns = [
   { field: "id", headerName: "شماره خبر", width: 90 },
   {
@@ -15,7 +17,9 @@ const columns = [
     field: "img",
     headerName: "تصویر",
     width: 150,
-    renderCell: (params) => <img style={{width:"90px",height:"50px"}} src={params.value} />
+    renderCell: (params) => (
+      <img style={{ width: "90px", height: "50px" }} src={params.value} />
+    ),
   },
 
   {
@@ -34,7 +38,7 @@ const columns = [
           ویرایش
         </Button>
       );
-    }
+    },
   },
   {
     field: "delete",
@@ -52,7 +56,7 @@ const columns = [
           حذف
         </Button>
       );
-    }
+    },
   },
 ];
 
@@ -68,18 +72,28 @@ const rows = [
   { id: 9, newsName: "دبل سوویت", img: "/images/gallery/pic1.png" },
 ];
 const Center = styled.div`
-
-  margin: 10rem ;
- 
+  margin: 10rem auto;
+ max-width:1440px;
 `;
-
+const BtnDiv = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 17rem;
+  margin-top:1rem;
+`;
+const MenuItem = styled.button`
+  margin: 10px;
+  font-size: 16px;
+  background-color:rgb(47, 128, 237);
+  color: white;
+  padding: 10px;
+`;
 export default function DataGridDemo() {
   return (
     <Center>
       {" "}
-      <Box     dir="rtl" sx={{ height: 400, width: "80%" }}>
+      <Box dir="rtl" sx={{ height: 400, width: "80%" }}>
         <DataGrid
-    
           rows={rows}
           columns={columns}
           pageSize={5}
@@ -88,6 +102,11 @@ export default function DataGridDemo() {
           experimentalFeatures={{ newEditingApi: true }}
         />
       </Box>
+      <BtnDiv>
+        <LinkWrapper to="/adminpanelcreatenews">
+          <MenuItem>اضافه کردن خبر </MenuItem>
+        </LinkWrapper>
+      </BtnDiv>
     </Center>
   );
 }

@@ -41,41 +41,32 @@ const SideBar = () => {
             <MenuItem
               style={path === "/adminpanelrooms" ? { fontWeight: "bold" } : {}}
             >
-              لیست اتاق ها
+               اتاق ها
             </MenuItem>
           </LinkWrapper>
           <LinkWrapper to="/adminpanelnews">
             <MenuItem style={path === "/adminpanelnews" ? { fontWeight: "bold" } : {}}>
-              لیست خبر ها
+               خبر ها
             </MenuItem>
           </LinkWrapper>
           <LinkWrapper to="/adminpanelusers">
             <MenuItem
               style={path === "/adminpanelusers" ? { fontWeight: "bold" } : {}}
             >
-              لیست کاربر ها
+               کاربر ها
             </MenuItem>
           </LinkWrapper>
           <LinkWrapper to="/adminpanelreserves">
             <MenuItem style={path === "/adminpanelreserves" ? { fontWeight: "bold" } : {}}>
-              لیست رزرو ها
+               رزرو ها
             </MenuItem>
           </LinkWrapper>
           <LinkWrapper to="/adminpanelcontacts">
             <MenuItem style={path === "/adminpanelcontacts" ? { fontWeight: "bold" } : {}}>
-              لیست تماس ها
+               تماس ها
             </MenuItem>
           </LinkWrapper>
-          <LinkWrapper to="/adminpanelcreateroom">
-            <MenuItem style={path === "/adminpanelcreateroom" ? { fontWeight: "bold" } : {}}>
-              اضافه کردن اتاق{" "}
-            </MenuItem>
-          </LinkWrapper>
-          <LinkWrapper to="/adminpanelcreatenews">
-            <MenuItem style={path === "/adminpanelcreatenews" ? { fontWeight: "bold" } : {}}>
-              اضافه کردن خبر{" "}
-            </MenuItem>
-          </LinkWrapper>
+
           <LinkWrapper to="/">
             <MenuItem style={{ color: "red" }}>خروج </MenuItem>
           </LinkWrapper>
