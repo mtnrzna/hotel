@@ -4,6 +4,7 @@ import { mobile } from "../../.././responsive";
 import LinkWrapper from "../../LinkWrapper";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
     height: 100vh;
@@ -82,7 +83,22 @@ const Login = styled.button`
     font-weight: 700;
     font-size: 16px;
 `;
+
+const Account = styled.button`
+    width: 100%;
+    padding: 8px 0;
+    margin: 100px 0 20px 0;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 16px;
+    ${mobile({ display: "block" })};
+`;
 const Overlay = ({ onClick }) => {
+    const { isAuthenticated } = useSelector((state) => state.user);
+
     const path = useLocation().pathname;
     return (
         <Container>
@@ -137,12 +153,22 @@ const Overlay = ({ onClick }) => {
                             </MenuItem>
                         </LinkWrapper>
                     </MenuItems>
-                    <LinkWrapper to="/signup">
-                        <Signup>ثبت نام</Signup>
-                    </LinkWrapper>
-                    <LinkWrapper to="/signin">
-                        <Login>ورود</Login>
-                    </LinkWrapper>
+
+                    {!isAuthenticated && (
+                        <LinkWrapper to="/signup">
+                            <Signup>ثبت نام</Signup>
+                        </LinkWrapper>
+                    )}
+                    {!isAuthenticated && (
+                        <LinkWrapper to="/signin">
+                            <Login>ورود</Login>
+                        </LinkWrapper>
+                    )}
+                    {isAuthenticated && (
+                        <LinkWrapper to="/user/profile">
+                            <Account>حساب کاربر</Account>
+                        </LinkWrapper>
+                    )}
                 </BottomWrapper>
             </Bottom>
         </Container>

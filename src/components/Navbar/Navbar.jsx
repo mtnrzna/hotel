@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { mobile } from "../.././responsive";
 import LinkWrapper from ".././LinkWrapper";
 import MenuIcon from "@mui/icons-material/Menu";
 import Overlay from "./Overlay/Overlay";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
     height: 80px;
@@ -69,6 +70,18 @@ const Login = styled.button`
     ${mobile({ display: "none" })};
 `;
 
+const Account = styled.button`
+    height: 30px;
+    width: 160px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 16px;
+    ${mobile({ display: "none" })};
+`;
+
 const Center = styled.div`
     flex: 1;
     display: flex;
@@ -100,6 +113,8 @@ const Logo = styled.img`
 `;
 
 const Navbar = () => {
+    const { isAuthenticated } = useSelector((state) => state.user);
+
     const path = useLocation().pathname;
     const [overlayStatus, setOverlayStatus] = useState(false);
     const [lock, setLock] = useState(true);
@@ -131,12 +146,21 @@ const Navbar = () => {
                                     style={{ fontSize: "46px" }}
                                 />
                             </MenueIconContainer>
-                            <LinkWrapper to="/signup">
-                                <Signup>ثبت نام</Signup>
-                            </LinkWrapper>
-                            <LinkWrapper to="/signin">
-                                <Login>ورود</Login>
-                            </LinkWrapper>
+                            {!isAuthenticated && (
+                                <LinkWrapper to="/signup">
+                                    <Signup>ثبت نام</Signup>
+                                </LinkWrapper>
+                            )}
+                            {!isAuthenticated && (
+                                <LinkWrapper to="/signin">
+                                    <Login>ورود</Login>
+                                </LinkWrapper>
+                            )}
+                            {isAuthenticated && (
+                                <LinkWrapper to="/user/profile">
+                                    <Account>حساب کاربر</Account>
+                                </LinkWrapper>
+                            )}
                         </Left>
                         <Center>
                             <LinkWrapper to="/about-us">

@@ -21,6 +21,7 @@ const CustomInput = styled.input`
 const CustomTextarea = styled.textarea`
     width: 100%;
     padding: 10px;
+    margin-bottom: 20px;
     border: 1px solid #cbcbcb;
     border-radius: 3px;
     box-sizing: border-box;
@@ -36,10 +37,10 @@ const CustomTextarea = styled.textarea`
         boxSizing: "border-box",
     })}
 `;
-const Input = ({ placeholder, name, type = "text" ,style,textarea}) => {
+
+const Input = ({ placeholder, name, type = "text", onChange, style,textarea}) => {
     if(textarea) return  <CustomTextarea style={style} placeholder={placeholder} name={name} type={type} />;
-    return  <CustomInput style={style} placeholder={placeholder} name={name} type={type} />;
-     
+    return <CustomInput style={style} placeholder={placeholder} name={name} type={type} onChange={onChange} />;
 };
 
 export default Input;

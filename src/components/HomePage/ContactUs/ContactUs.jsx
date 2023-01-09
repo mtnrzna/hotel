@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -6,6 +6,10 @@ import TemplateButton from "../../UI/TemplateButton";
 import HomeSectionContainer from "../HomeSectionContainer";
 import HomeSectionWrapper from "../HomeSectionWrapper";
 import { mobile } from "../../../responsive";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { addNewContactUs } from "../../../actions/client/contactUsAction";
 
 const Top = styled.h2`
     margin-bottom: 40px;
@@ -38,7 +42,7 @@ const Right = styled.div`
     align-items: center;
 `;
 
-const WrapperRight = styled.div`
+const WrapperRight = styled.form`
     width: 80%;
     height: 100%;
     display: flex;
@@ -149,7 +153,7 @@ const Circle = styled.div`
     align-items: center;
 `;
 
-const MobileInputSection = styled.div`
+const MobileInputSection = styled.form`
     width: 95vw;
     display: none;
     flex-direction: column;
@@ -162,6 +166,64 @@ const MobileInputSection = styled.div`
 `;
 
 const ContactUs = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { loading, isAuthenticated, error } = useSelector(
+        (state) => state.newContactUs
+    );
+
+    const [title, setTitle] = useState("");
+    const [email, setEmail] = useState("");
+    const [description, setDescription] = useState("");
+    const [message, setMessage] = useState({
+        title,
+        email,
+        description,
+    });
+
+    const handleSendContactUs = (e) => {
+        e.preventDefault();
+
+        setMessage({
+            title,
+            email,
+            description,
+        });
+        dispatch(addNewContactUs(message));
+        toast.success("پیام شما ارسال شد.");
+        setTitle("");
+        setEmail("");
+        setDescription("");
+        console.log("title", title);
+    };
+
+    const handleDataChange = (e) => {
+        const targetName = e.target.name;
+
+        switch (targetName) {
+            case "title":
+                setTitle(e.target.value);
+                break;
+            case "email":
+                setEmail(e.target.value);
+                break;
+            case "description":
+                setDescription(e.target.value);
+                break;
+        }
+        setMessage({ ...message, [e.target.name]: e.target.value });
+    };
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+        if (isAuthenticated) {
+            navigate("/");
+        }
+    }, [dispatch, error, isAuthenticated, navigate]);
+
     return (
         <HomeSectionContainer>
             <HomeSectionWrapper>
@@ -171,12 +233,28 @@ const ContactUs = () => {
                         <Map src="/images/map.png" />
                     </Left>
                     <Right>
-                        <WrapperRight>
+                        <WrapperRight onSubmit={handleSendContactUs}>
                             <InfoSection>
-                                <Name placeholder="نام و نام خانوادگی" />
-                                <Email placeholder="ایمیل" />
+                                <Name
+                                    placeholder="عنوان"
+                                    name="title"
+                                    value={title}
+                                    onChange={handleDataChange}
+                                />
+                                <Email
+                                    placeholder="ایمیل"
+                                    name="email"
+                                    value={email}
+                                    onChange={handleDataChange}
+                                    type="email"
+                                />
                             </InfoSection>
-                            <Message placeholder="پیام خود را در اینجا بنویسید" />
+                            <Message
+                                placeholder="پیام خود را در اینجا بنویسید"
+                                name="description"
+                                value={description}
+                                onChange={handleDataChange}
+                            />
                             <Submit>ارسال پیام</Submit>
                             <Contacts>
                                 <EmailContact>
@@ -200,10 +278,26 @@ const ContactUs = () => {
                     </Right>
                 </Bottom>
 
-                <MobileInputSection>
-                    <Name placeholder="نام و نام خانوادگی" />
-                    <Email placeholder="ایمیل" />
-                    <Message placeholder="پیام خود را در اینجا بنویسید" />
+                <MobileInputSection onSubmit={handleSendContactUs}>
+                    <Name
+                        placeholder="عنوان"
+                        name="title"
+                        value={title}
+                        onChange={handleDataChange}
+                    />
+                    <Email
+                        placeholder="ایمیل"
+                        name="email"
+                        value={email}
+                        onChange={handleDataChange}
+                        type="email"
+                    />
+                    <Message
+                        placeholder="پیام خود را در اینجا بنویسید"
+                        name="description"
+                        value={description}
+                        onChange={handleDataChange}
+                    />
                     <Submit>ارسال پیام</Submit>
                 </MobileInputSection>
             </HomeSectionWrapper>

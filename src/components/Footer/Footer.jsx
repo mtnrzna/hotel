@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { mobile } from "../../responsive";
 import { SocialIcon } from "react-social-icons";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { ToastContainer } from "react-toastify";
 
 const Container = styled.div`
     display: flex;
@@ -176,6 +177,9 @@ const Footer = () => {
                         بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
                     </AboutUsDesc>
                 </Right>
+                <ToastContainer
+                    position={width > 414 ? "top-right" : "top-center"}
+                />
             </Wrapper>
         </Container>
     );

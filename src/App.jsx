@@ -1,5 +1,6 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import AboutUs from "./pages/AboutUs";
@@ -12,6 +13,7 @@ import Reserve from "./pages/Reserve";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./utils/scrollTotop";
+
 import AdminPanelRooms from "./pages/AdminPanelRooms";
 import AdminPanelContacts from "./pages/AdminPanelContacts";
 import AdminPanelNews from "./pages/AdminPanelNews";
@@ -23,9 +25,11 @@ import SignInAdmin from "./pages/SignInAdmin";
 import SignUpAdmin from "./pages/SignUpAdmin";
 import UserPanelReserves from "./pages/UserPanelReserves";
 import UserPanelProfile from "./pages/UserPanelProfile";
+import { useSelector } from "react-redux";
 function App() {
-  const user = false;
   const admin = false;
+  const { isAuthenticated } = useSelector((state) => state.user);
+  console.log(isAuthenticated);
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -35,15 +39,15 @@ function App() {
         <Route path="about-us" element={<AboutUs />} />
         <Route
           path="/signin"
-          element={user ? <Navigate to="/" /> : <SignIn />}
+          element={isAuthenticated ? <Navigate to="/" /> : <SignIn />}
         />
         <Route
           path="/signup"
-          element={user ? <Navigate to="/" /> : <SignUp />}
+          element={isAuthenticated ? <Navigate to="/" /> : <SignUp />}
         />
         <Route
           path="/forgot-password"
-          element={user ? <Navigate to="/" /> : <ForgotPass />}
+          element={isAuthenticated ? <Navigate to="/" /> : <ForgotPass />}
         />
         <Route path="/reserves" element={<Reserves />} />
         <Route path="/reserve/:id" element={<Reserve />} />
@@ -72,16 +76,16 @@ function App() {
         />
         <Route
           path="/userpanelreserves"
-          element={user ? <UserPanelReserves /> : <Navigate to="/" />}
+          element={isAuthenticated ? <UserPanelReserves /> : <Navigate to="/" />}
         />
         <Route
           path="/userpanelprofile"
-          element={user ? <UserPanelProfile /> : <Navigate to="/" />}
+          element={isAuthenticated ? <UserPanelProfile /> : <Navigate to="/" />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
-}
 
+  }
 export default App;
