@@ -31,7 +31,42 @@ const columns = [
     headerName: "تاریخ تولد",
     width: 150,
   },
-
+  {
+    field: "list",
+    headerName: "لیست رزرو",
+    width: 100,
+    renderCell: (cellValues) => {
+      return (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(event) => {
+            console.log(event, cellValues);
+          }}
+        >
+          مشاهده
+        </Button>
+      );
+    },
+  },
+  {
+    field: "delete",
+    headerName: "عملیات",
+    width: 100,
+    renderCell: (cellValues) => {
+      return (
+        <Button
+          variant="contained"
+          color="error"
+          onClick={(event) => {
+            console.log(event, cellValues);
+          }}
+        >
+          حذف
+        </Button>
+      );
+    },
+  },
 ];
 
 const rows = [

@@ -23,7 +23,7 @@ const columns = [
 
   {
     field: "delete",
-    headerName: "حذف",
+    headerName: "عملیات",
     width: 100,
     renderCell: (cellValues) => {
       return (

@@ -23,38 +23,31 @@ const columns = [
   },
 
   {
-    field: "edit",
-    headerName: "تغییرات",
-    width: 150,
+    headerName: " عملیات ",
+    width: 300,
     renderCell: (cellValues) => {
       return (
-        <Button
-          variant="contained"
-          color="warning"
-          onClick={(event) => {
-            console.log(event, cellValues);
-          }}
-        >
-          ویرایش
-        </Button>
-      );
-    },
-  },
-  {
-    field: "delete",
-    headerName: "حذف",
-    width: 100,
-    renderCell: (cellValues) => {
-      return (
-        <Button
-          variant="contained"
-          color="error"
-          onClick={(event) => {
-            console.log(event, cellValues);
-          }}
-        >
-          حذف
-        </Button>
+        <>
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={(event) => {
+              console.log( cellValues.row);
+            }}
+          >
+            ویرایش
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={(event) => {
+              console.log(cellValues.row);
+            }}
+            sx={{marginRight:"14px"}}
+          >
+            حذف
+          </Button>
+        </>
       );
     },
   },
@@ -73,18 +66,18 @@ const rows = [
 ];
 const Center = styled.div`
   margin: 10rem auto;
- max-width:1440px;
+  max-width: 1440px;
 `;
 const BtnDiv = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-right: 17rem;
-  margin-top:1rem;
+  margin-top: 1rem;
 `;
 const MenuItem = styled.button`
   margin: 10px;
   font-size: 16px;
-  background-color:rgb(47, 128, 237);
+  background-color: rgb(47, 128, 237);
   color: white;
   padding: 10px;
 `;

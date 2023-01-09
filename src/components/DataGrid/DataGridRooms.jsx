@@ -37,7 +37,7 @@ const columns = [
           variant="contained"
           color={cellValues.value ? "primary" : "error"}
           onClick={(event) => {
-            console.log(event.target);
+            console.log(cellValues.row); 
           }}
         >
           فعال
@@ -45,39 +45,35 @@ const columns = [
       );
     },
   },
-  {
-    field: "edit",
-    headerName: "تغییرات",
-    width: 150,
-    renderCell: (cellValues) => {
-      return (
-        <Button
-          variant="contained"
-          color="warning"
-          onClick={(event) => {
-            console.log(event, cellValues);
-          }}
-        >
-          ویرایش
-        </Button>
-      );
-    },
-  },
+
   {
     field: "delete",
-    headerName: "حذف",
-    width: 100,
+    headerName: "عملیات",
+    width: 300,
     renderCell: (cellValues) => {
       return (
-        <Button
-          variant="contained"
-          color="error"
-          onClick={(event) => {
-            console.log(event, cellValues);
-          }}
-        >
-          حذف
-        </Button>
+
+      <>
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={(event) => {
+              console.log( cellValues.row);
+            }}
+          >
+            ویرایش
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={(event) => {
+              console.log(cellValues.row);
+            }}
+            sx={{marginRight:"14px"}}
+          >
+            حذف
+          </Button>
+        </>
       );
     },
   },

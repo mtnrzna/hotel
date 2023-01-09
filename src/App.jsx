@@ -24,7 +24,7 @@ import SignUpAdmin from "./pages/SignUpAdmin";
 import UserPanelReserves from "./pages/UserPanelReserves";
 import UserPanelProfile from "./pages/UserPanelProfile";
 function App() {
-  const user = true;
+  const user = false;
   const admin = false;
   return (
     <BrowserRouter>
