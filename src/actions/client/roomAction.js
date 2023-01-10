@@ -8,6 +8,9 @@ import {
     GET_ROOMS_REQUEST,
     GET_ROOMS_SUCCESS,
     GET_ROOMS_FAIL,
+    GET_ROOM_BY_ID_REQUEST,
+    GET_ROOM_BY_ID_SUCCESS,
+    GET_ROOM_BY_ID_FAIL,
 } from "../../constants/client/roomConstants";
 import { axiosInstance } from "../../interceptor/interceptor";
 
@@ -52,16 +55,6 @@ export const incrementRoomLike = (id) => async (dispatch) => {
     }
 };
 
-// Get A Room's Detail
-export const getRoomDetail = (id) => async () => {
-    try {
-        const { data } = await axiosInstance.put(`/rooms/${id}`);
-        return data.room;
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 // Get Rooms By Page Number
 export const getRoomsByPage = (page) => async (dispatch) => {
     try {
@@ -82,6 +75,25 @@ export const getRoomsByPage = (page) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_ROOMS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Get A Room's Detail
+export const getRoomById = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: GET_ROOM_BY_ID_REQUEST });
+
+        const { data } = await axiosInstance.get(`/rooms/${id}`);
+
+        dispatch({
+            type: GET_ROOM_BY_ID_SUCCESS,
+            payload: data.room,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_ROOM_BY_ID_FAIL,
             payload: error.response.data.message,
         });
     }

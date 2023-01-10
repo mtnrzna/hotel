@@ -7,6 +7,7 @@ import {
     chosenRoomsReducer,
     roomsByPageReducer,
     incrementRoomLikeReducer,
+    roomByIdReducer,
 } from "./reducers/client/roomReducer";
 import { galleryReducer } from "./reducers/client/galleryReducer";
 import { newContactUsReducer } from "./reducers/client/contactUsReducer";
@@ -16,6 +17,7 @@ const reducer = combineReducers({
     user: userReducer,
     chosenRooms: chosenRoomsReducer,
     roomsByPage: roomsByPageReducer,
+    roomById: roomByIdReducer,
     incrementRoomLike: incrementRoomLikeReducer,
     chosenNews: chosenNewsReducer,
     gallery: galleryReducer,

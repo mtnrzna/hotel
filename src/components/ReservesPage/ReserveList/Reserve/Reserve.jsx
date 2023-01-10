@@ -113,7 +113,7 @@ const Reserve = ({ room }) => {
     return (
         <Container>
             <Left>
-                <Image src={room.image} />
+                <Image src={room.defaultImage} />
             </Left>
             <Right>
                 <LinkWrapper to={`/reserve/${room.id}`}>

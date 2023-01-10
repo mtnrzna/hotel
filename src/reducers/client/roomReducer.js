@@ -8,6 +8,9 @@ import {
     GET_ROOMS_REQUEST,
     GET_ROOMS_SUCCESS,
     GET_ROOMS_FAIL,
+    GET_ROOM_BY_ID_REQUEST,
+    GET_ROOM_BY_ID_SUCCESS,
+    GET_ROOM_BY_ID_FAIL,
 } from "../../constants/client/roomConstants";
 
 export const chosenRoomsReducer = (
@@ -74,6 +77,29 @@ export const roomsByPageReducer = (
                 roomsAndPageNumber: payload,
             };
         case GET_ROOMS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const roomByIdReducer = (state = { room: {} }, { type, payload }) => {
+    switch (type) {
+        case GET_ROOM_BY_ID_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case GET_ROOM_BY_ID_SUCCESS:
+            return {
+                loading: false,
+                room: payload,
+            };
+        case GET_ROOM_BY_ID_FAIL:
             return {
                 ...state,
                 loading: false,

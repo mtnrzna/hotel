@@ -98,7 +98,7 @@ const BigCartRoom = () => {
     return (
         <Container>
             <Top>
-                <Image src={chosenRoom?.image} />
+                <Image src={chosenRoom?.defaultImage} />
             </Top>
             <Bottom>
                 <LinkWrapper to={`/reserve/${chosenRoom?.id}`}>
