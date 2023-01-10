@@ -98,7 +98,12 @@ const BigCartRoom = () => {
     return (
         <Container>
             <Top>
-                <Image src={chosenRoom?.defaultImage} />
+                <Image
+                    src={chosenRoom?.defaultImage?.replace(
+                        "/uploads/rooms/",
+                        ""
+                    )}
+                />
             </Top>
             <Bottom>
                 <LinkWrapper to={`/reserve/${chosenRoom?.id}`}>

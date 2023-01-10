@@ -1,3 +1,3 @@
-const BASE_URL = "http://hotel.mahdiab.ir/api";
+const BASE_URL = "";
 
 export default BASE_URL;

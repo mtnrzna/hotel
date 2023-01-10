@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "../Container";
 import Wrapper from "../Wrapper";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { long_news } from "../../data";
 import { room } from "../../data";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRoomById, getRoomDetail } from "../../actions/client/roomAction";
 import { toast } from "react-toastify";
 import BackdropLoader from "../Layouts/BackdropLoader";
+import { addNewReserve } from "../../actions/client/reserveAction";
 
 const Top = styled.div`
     display: flex;
@@ -189,7 +190,7 @@ const SmallImageContainer = styled.div`
     box-sizing: border-box;
 `;
 
-const BottomRight = styled.div`
+const BottomRight = styled.form`
     flex: 1;
     align-self: stretch;
     display: flex;
@@ -297,6 +298,7 @@ const ReserveSection = () => {
     }, [dispatch, loading, error]);
 
     const [otherImages, setOtherImages] = useState({});
+    const [image0, setImage0] = useState({});
     const [image1, setImage1] = useState({});
     const [image2, setImage2] = useState({});
     const [image3, setImage3] = useState({});
@@ -306,12 +308,59 @@ const ReserveSection = () => {
     }, [room]);
 
     useEffect(() => {
-        if (otherImages && otherImages.length >= 3) {
-            setImage1(otherImages[0]);
-            setImage2(otherImages[1]);
-            setImage3(otherImages[2]);
+        if (otherImages && otherImages.length >= 4) {
+            setImage0(otherImages[0]);
+            setImage1(otherImages[1]);
+            setImage2(otherImages[2]);
+            setImage3(otherImages[3]);
         }
     }, [otherImages]);
+
+    const navigate = useNavigate();
+
+    const {
+        isAuthenticated,
+        error: error2,
+        registered,
+    } = useSelector((state) => state.user);
+
+    const [arrivalDate, setArrivalDate] = useState("");
+    const [departureDate, setDepartureDate] = useState("");
+    const [childrenNumber, setChildrenNumber] = useState("");
+    const [adultsNumber, setAdultsNumber] = useState("");
+
+    //const [avatar, setAvatar] = useState();
+    //const [avatarPreview, setAvatarPreview] = useState();
+
+    const handleReserve = (e) => {
+        e.preventDefault();
+
+        dispatch(
+            addNewReserve(id, {
+                from: arrivalDate,
+                to: departureDate,
+                adults: adultsNumber,
+                infants: childrenNumber,
+            })
+        );
+    };
+
+    useEffect(() => {
+        if (error2) {
+            toast.error(error2);
+        }
+        if (isAuthenticated) {
+        }
+        if (registered) {
+            setArrivalDate("");
+            setDepartureDate("");
+            setAdultsNumber("");
+            setChildrenNumber("");
+            toast.success("رزرو با موفقیت انجام شد.", {
+                autoClose: 5000,
+            });
+        }
+    }, [dispatch, error, error2, isAuthenticated, registered, navigate]);
 
     return (
         <Container>
@@ -321,7 +370,12 @@ const ReserveSection = () => {
                 <Top>
                     <TopLeft>
                         <ImageContainer>
-                            <Image src={room?.defaultImage} />
+                            <Image
+                                src={room?.defaultImage?.replace(
+                                    "/uploads/rooms/",
+                                    ""
+                                )}
+                            />
                         </ImageContainer>
                         <IconsContainer>
                             {icons.map((i) => (
@@ -370,58 +424,92 @@ const ReserveSection = () => {
                 <Bottom>
                     <BottomLeft>
                         <BigImageContainer>
-                            <Image src={otherImages} />
+                            <Image
+                                src={image0?.url?.replace(
+                                    "/uploads/rooms/",
+                                    ""
+                                )}
+                            />
                         </BigImageContainer>
                         <SmallImagesContainer>
                             <SmallImageContainer>
-                                <Image src={image1?.url} />
+                                <Image
+                                    src={image1?.url?.replace(
+                                        "/uploads/rooms/",
+                                        ""
+                                    )}
+                                />
                             </SmallImageContainer>
                             <SmallImageContainer>
-                                <Image src={image2?.url} />
+                                <Image
+                                    src={image2?.url?.replace(
+                                        "/uploads/rooms/",
+                                        ""
+                                    )}
+                                />
                             </SmallImageContainer>
                             <SmallImageContainer>
-                                <Image src={image3?.url} />
+                                <Image
+                                    src={image3?.url?.replace(
+                                        "/uploads/rooms/",
+                                        ""
+                                    )}
+                                />
                             </SmallImageContainer>
                         </SmallImagesContainer>
                     </BottomLeft>
-                    <BottomRight>
+                    <BottomRight onSubmit={handleReserve}>
                         <DateSection>
                             <Label htmlFor="arrival-date">تاریخ ورود:</Label>
                             <DateInput
-                                name="arrival-date"
+                                name="arrivalDate"
+                                value={arrivalDate}
                                 type="date"
                                 placeholder="2023-01-20"
                                 min="2012-01-01"
                                 max="2100-12-31"
+                                onChange={(e) => setArrivalDate(e.target.value)}
                             />
                         </DateSection>
                         <DateSection>
                             <Label htmlFor="departure-date">تاریخ خروج:</Label>
                             <DateInput
-                                name="departure-date"
+                                name="departureDate"
+                                value={departureDate}
                                 type="date"
                                 placeholder="2023-01-20"
                                 min="2012-01-01"
                                 max="2100-12-31"
+                                onChange={(e) =>
+                                    setDepartureDate(e.target.value)
+                                }
                             />
                         </DateSection>
                         <NumbersSection>
                             <NumberSection>
                                 <Label htmlFor="children-number">کودک:</Label>
                                 <NumberInput
-                                    name="children-number"
+                                    name="childrenNumber"
+                                    value={childrenNumber}
                                     type="number"
                                     min="0"
                                     max="200"
+                                    onChange={(e) =>
+                                        setChildrenNumber(e.target.value)
+                                    }
                                 />
                             </NumberSection>
                             <NumberSection>
                                 <Label htmlFor="adults-number">بزرگسال:</Label>
                                 <NumberInput
-                                    name="adults-number"
+                                    name="adultsNumber"
+                                    value={adultsNumber}
                                     type="number"
                                     min="1"
                                     max="200"
+                                    onChange={(e) =>
+                                        setAdultsNumber(e.target.value)
+                                    }
                                 />
                             </NumberSection>
                         </NumbersSection>

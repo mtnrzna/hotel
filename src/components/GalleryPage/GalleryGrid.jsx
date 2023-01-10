@@ -77,7 +77,15 @@ const GalleryGrid = () => {
                         <Grid>
                             {gallery.slice(0, 10).map((item) => (
                                 <ImageContainer key={item.id}>
-                                    <Image src={`${BASE_URL + item.image}`} />
+                                    <Image
+                                        src={`${
+                                            BASE_URL +
+                                            item.image?.replace(
+                                                "/uploads/rooms/",
+                                                ""
+                                            )
+                                        }`}
+                                    />
                                 </ImageContainer>
                             ))}
                         </Grid>

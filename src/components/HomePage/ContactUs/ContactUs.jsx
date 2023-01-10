@@ -186,9 +186,9 @@ const ContactUs = () => {
         e.preventDefault();
 
         setMessage({
-            title,
-            email,
-            description,
+            title: title,
+            email: email,
+            description: description,
         });
         dispatch(addNewContactUs(message));
         toast.success("پیام شما ارسال شد.");

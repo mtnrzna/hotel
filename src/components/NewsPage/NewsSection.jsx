@@ -29,7 +29,7 @@ const NewsSection = () => {
     return (
         <Container>
             <Wrapper>
-                <Image src={long_news.image} />
+                <Image src={long_news.image?.replace("/uploads/posts/", "")} />
                 <Title>{long_news.title}</Title>
                 <Desc>{long_news.desc}</Desc>
             </Wrapper>

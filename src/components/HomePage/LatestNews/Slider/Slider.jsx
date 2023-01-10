@@ -107,7 +107,9 @@ const Slider = ({ news }) => {
                 <Container key={n.id}>
                     <Cart>
                         <Top>
-                            <Image src={n.image} />
+                            <Image
+                                src={n.image?.replace("/uploads/posts/", "")}
+                            />
                         </Top>
                         <Bottom>
                             <LinkWrapper to={`/news/${n.id}`}>

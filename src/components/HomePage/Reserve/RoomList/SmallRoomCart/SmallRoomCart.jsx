@@ -117,7 +117,9 @@ const SmallRoomCart = ({ room }) => {
     return (
         <Container>
             <Left>
-                <Image src={room.defaultImage} />
+                <Image
+                    src={room.defaultImage?.replace("/uploads/rooms/", "")}
+                />
             </Left>
             <Right>
                 <LinkWrapper to={`/reserve/${room.id}`}>

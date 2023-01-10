@@ -10,7 +10,13 @@ export const addNewContactUs = (contactUsData) => async (dispatch) => {
     try {
         dispatch({ type: NEW_CONTACTUS_REQUEST });
         const { data } = await axiosInstance.post("/contactUs", contactUsData, {
-            params: { ...contactUsData },
+            params: {
+                ...{
+                    name: contactUsData.title,
+                    email: contactUsData.email,
+                    description: contactUsData.description,
+                },
+            },
         });
         dispatch({
             type: NEW_CONTACTUS_SUCCESS,

@@ -18,6 +18,7 @@ import { newsListReducer } from "./reducers/admin/newsListReducer";
 import { usersListReducer } from "./reducers/admin/usersListReducer";
 import { reservesListReducer } from "./reducers/admin/reservesListReducer";
 import { contactsListReducer } from "./reducers/admin/contactsListReducer";
+import { newReserveReducer } from "./reducers/client/reserveReducer";
 
 const reducer = combineReducers({
     user: userReducer,
@@ -34,6 +35,7 @@ const reducer = combineReducers({
     usersList: usersListReducer,
     reservesList: reservesListReducer,
     contactsList: contactsListReducer,
+    newReserve: newReserveReducer,
 });
 
 const store = configureStore(
