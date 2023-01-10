@@ -1,7 +1,4 @@
 import {
-    LOAD_USER_FAIL,
-    LOAD_USER_REQUEST,
-    LOAD_USER_SUCCESS,
     LOGIN_USER_FAIL,
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
@@ -20,7 +17,6 @@ export const userReducer = (
     switch (type) {
         case LOGIN_USER_REQUEST:
         case REGISTER_USER_REQUEST:
-        case LOAD_USER_REQUEST:
             return {
                 loading: true,
                 isAuthenticated: false,
@@ -35,7 +31,6 @@ export const userReducer = (
                 registered: true,
             };
         case LOGIN_USER_SUCCESS:
-        case LOAD_USER_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -52,13 +47,6 @@ export const userReducer = (
         case REGISTER_USER_FAIL:
             return {
                 ...state,
-                loading: false,
-                isAuthenticated: false,
-                user: null,
-                error: payload,
-            };
-        case LOAD_USER_FAIL:
-            return {
                 loading: false,
                 isAuthenticated: false,
                 user: null,

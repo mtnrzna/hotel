@@ -157,7 +157,7 @@ const Navbar = () => {
                                 </LinkWrapper>
                             )}
                             {isAuthenticated && (
-                                <LinkWrapper to="/user/profile">
+                                <LinkWrapper to="/userpanelreserves">
                                     <Account>حساب کاربر</Account>
                                 </LinkWrapper>
                             )}

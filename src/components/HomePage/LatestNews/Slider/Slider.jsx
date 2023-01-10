@@ -91,7 +91,7 @@ const Slider = ({ news }) => {
         dots: true,
         infinite: true,
         speed: 1500,
-        slidesToShow: width > 415 ? 3 : 1,
+        slidesToShow: width > 414 ? 3 : 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,

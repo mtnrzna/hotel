@@ -5,6 +5,8 @@ import {
     REGISTER_USER_FAIL,
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAIL,
 } from "../../constants/client/userConstants";
 
 import { axiosInstance } from "../../interceptor/interceptor";
@@ -59,6 +61,19 @@ export const loginUser = (email, password) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGIN_USER_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+export const logoutUser = () => async (dispatch) => {
+    try {
+        localStorage.removeItem("token");
+        localStorage.clear();
+        dispatch({ type: LOGOUT_USER_SUCCESS });
+    } catch (error) {
+        dispatch({
+            type: LOGOUT_USER_FAIL,
             payload: error.response.data.message,
         });
     }

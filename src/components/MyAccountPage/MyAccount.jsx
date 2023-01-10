@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { mobile } from "../../.././responsive";
-import LinkWrapper from "../../LinkWrapper";
+import { mobile } from "../.././responsive";
+import LinkWrapper from "../LinkWrapper";
 import CloseIcon from "@mui/icons-material/Close";
-import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { logoutUser } from "../../actions/client/userAction";
 
 const Container = styled.div`
     height: 100vh;
@@ -64,39 +66,31 @@ const MenuItem = styled.div`
     font-size: 18px;
 `;
 
-const Signup = styled.button`
-    width: 100%;
-    padding: 8px 0;
-    margin: 100px 0 20px 0;
-    background-color: black;
-    border-radius: 6px;
-    color: white;
-    font-size: 16px;
-`;
-
-const Login = styled.button`
+const Exit = styled.button`
     width: 100%;
     padding: 8px 0;
     background-color: white;
-    color: black;
-    border: 0px;
+    color: red;
+    border: 0;
     font-weight: 700;
     font-size: 16px;
-`;
-
-const Account = styled.button`
-    width: 100%;
-    padding: 8px 0;
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    border-radius: 3px;
-    font-weight: 700;
-    font-size: 16px;
-    ${mobile({ display: "block" })};
 `;
 const MyAccount = ({ onClick }) => {
-    const { isAuthenticated } = useSelector((state) => state.user);
+    const { isAuthenticated, error } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleExit = (e) => {
+        dispatch(logoutUser());
+        navigate("/");
+    };
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+        toast("به امید دیدار");
+    }, [dispatch, error, navigate]);
 
     const path = useLocation().pathname;
     return (
@@ -153,24 +147,7 @@ const MyAccount = ({ onClick }) => {
                         </LinkWrapper>
                     </MenuItems>
 
-                    {!isAuthenticated && (
-                        <LinkWrapper to="/signup">
-                            <Signup>ثبت نام</Signup>
-                        </LinkWrapper>
-                    )}
-                    {!isAuthenticated && (
-                        <LinkWrapper to="/signin">
-                            <Login>ورود</Login>
-                        </LinkWrapper>
-                    )}
-                    {isAuthenticated && (
-                        <LinkWrapper
-                            to="/my-account"
-                            style={{ margin: "100px 0 20px 0" }}
-                        >
-                            <Account>حساب کاربر</Account>
-                        </LinkWrapper>
-                    )}
+                    <Exit onClick={handleExit}>خروج</Exit>
                 </BottomWrapper>
             </Bottom>
         </Container>

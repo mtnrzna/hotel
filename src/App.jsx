@@ -26,7 +26,12 @@ import SignUpAdmin from "./pages/SignUpAdmin";
 import UserPanelReserves from "./pages/UserPanelReserves";
 import UserPanelProfile from "./pages/UserPanelProfile";
 import { useSelector } from "react-redux";
+import useWindowDimensions from "./hooks/useWindowDimensions";
+import MyAccount from "./components/MyAccountPage/MyAccount";
+
 function App() {
+    const { height, width } = useWindowDimensions();
+
     const { isAuthenticated } = useSelector((state) => state.user);
     const { isAdmin } = useSelector((state) => state.admin);
     return (
@@ -48,6 +53,20 @@ function App() {
                     path="/forgot-password"
                     element={
                         isAuthenticated ? <Navigate to="/" /> : <ForgotPass />
+                    }
+                />
+                <Route
+                    path="/my-account"
+                    element={
+                        isAuthenticated ? (
+                            width > 414 ? (
+                                <Navigate to="/userpanelreserves" />
+                            ) : (
+                                <MyAccount />
+                            )
+                        ) : (
+                            <SignIn />
+                        )
                     }
                 />
                 <Route path="/reserves" element={<Reserves />} />
@@ -76,7 +95,7 @@ function App() {
                 <Route
                     path="/signinadmin"
                     element={
-                      isAdmin ? (
+                        isAdmin ? (
                             <Navigate to="/adminpanelrooms" />
                         ) : (
                             <SignInAdmin />
@@ -93,7 +112,7 @@ function App() {
                         isAuthenticated ? (
                             <UserPanelReserves />
                         ) : (
-                            <Navigate to="/" />
+                            <Navigate to="/signin" />
                         )
                     }
                 />
