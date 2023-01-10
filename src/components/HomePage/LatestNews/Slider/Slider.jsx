@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Slick from "react-slick";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ShareIcon from "@mui/icons-material/Share";
-import { news } from "../../../../data";
+//import { news } from "../../../../data";
 import LinkWrapper from "../../../LinkWrapper";
 import truncateText from "../.././../../utils/truncateText";
 import Arrow from "./Arrow/Arrow";
@@ -84,7 +84,7 @@ const SeeMoreButton = styled.button`
     align-items: center;
 `;
 
-const Slider = () => {
+const Slider = ({ news }) => {
     const { height, width } = useWindowDimensions();
 
     const settings = {
@@ -113,7 +113,12 @@ const Slider = () => {
                             <LinkWrapper to={`/news/${n.id}`}>
                                 <Title>{truncateText(n.title, 80)}</Title>
                             </LinkWrapper>
-                            <Desc>{truncateText(n.desc, 120)}</Desc>
+                            <Desc>
+                                {truncateText(
+                                    n.description,
+                                    width > 700 ? 120 : 90
+                                )}
+                            </Desc>
                             <BottomBar>
                                 <LinkWrapper to={`/news/${n.id}`}>
                                     <SeeMoreButton>

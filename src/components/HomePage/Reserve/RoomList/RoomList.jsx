@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SmallRoomCart from "./SmallRoomCart/SmallRoomCart";
 import { rooms } from "../../../../data";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
     flex: 7;
@@ -12,9 +13,11 @@ const Container = styled.div`
 `;
 
 const RoomList = () => {
+    const { chosenRooms } = useSelector((state) => state.chosenRooms);
+
     return (
         <Container>
-            {rooms.map((room) => (
+            {chosenRooms?.slice(0, 3).map((room) => (
                 <SmallRoomCart room={room} key={room.id} />
             ))}
         </Container>

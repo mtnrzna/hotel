@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LinkWrapper from "../../../LinkWrapper";
 import LikesButton from "../../../UI/LikesButton";
 import CapacityButton from "../../../UI/CapacityButton";
 import TemplateButton from "../../../UI/TemplateButton";
 import { mobile } from "../../../../responsive";
+import { rooms } from "../../../../data";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementRoomLike } from "../../../../actions/client/roomAction";
+import { toast } from "react-toastify";
+import truncateText from "../../../../utils/truncateText";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 
 const Container = styled.div`
     padding: 30px 0;
@@ -82,21 +88,50 @@ const ReserveButton = styled(TemplateButton)`
     })}
 `;
 
-const Reserve = ({ item }) => {
+const Reserve = ({ room }) => {
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.incrementRoomLike);
+    const [liked, setLiked] = useState(false);
+    const [allLikes, setAllLikes] = useState(room?.like_count);
+
+    const handleLikeIncrement = async () => {
+        if (!liked) {
+            setLiked(!liked);
+            await dispatch(incrementRoomLike(room.id));
+            setAllLikes(allLikes + 1);
+        }
+    };
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [dispatch, loading, error]);
+
+    const { height, width } = useWindowDimensions();
+
     return (
         <Container>
             <Left>
-                <Image src={item.image} />
+                <Image src={room.defaultImage} />
             </Left>
             <Right>
-                <Title>{item.title}</Title>
-                <Desc>{item.desc}</Desc>
+                <LinkWrapper to={`/reserve/${room.id}`}>
+                    <Title>{room.title}</Title>
+                </LinkWrapper>
+                <Desc>
+                    {truncateText(room.description, width > 700 ? 360 : 100)}
+                </Desc>
                 <BottomBar>
                     <IconsWrapper>
-                        <LikesButton likeNumber={12} />
-                        <CapacityButton capacityNumber={4} />
+                        <LikesButton
+                            liked={liked}
+                            likeNumber={allLikes}
+                            onClick={() => handleLikeIncrement(room)}
+                        />
+                        <CapacityButton capacityNumber={room.capacity} />
                     </IconsWrapper>
-                    <LinkWrapper to={`/reserve/${item.id}`}>
+                    <LinkWrapper to={`/reserve/${room.id}`}>
                         <ReserveButton>رزرو</ReserveButton>
                     </LinkWrapper>
                 </BottomBar>

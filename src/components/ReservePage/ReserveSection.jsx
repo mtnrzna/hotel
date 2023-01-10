@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "../Container";
 import Wrapper from "../Wrapper";
@@ -11,6 +11,10 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import TemplateButton from "../UI/TemplateButton";
 import { mobile } from "../../responsive";
+import { useDispatch, useSelector } from "react-redux";
+import { getRoomById, getRoomDetail } from "../../actions/client/roomAction";
+import { toast } from "react-toastify";
+import BackdropLoader from "../Layouts/BackdropLoader";
 
 const Top = styled.div`
     display: flex;
@@ -91,8 +95,8 @@ const RoomDesc = styled.div``;
 const CapacitySection = styled.div`
     margin-top: 5px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
 `;
 
 const CapacityTitle = styled.div`
@@ -161,7 +165,8 @@ const BottomLeft = styled.div`
 `;
 
 const BigImageContainer = styled.div`
-    max-height: 400px;
+    height: 400px;
+    width: 400px;
     overflow: hidden;
     object-fit: cover;
 `;
@@ -175,8 +180,8 @@ const SmallImagesContainer = styled.div`
 
 const SmallImageContainer = styled.div`
     margin: 10px;
-    height: 80%;
-    width: 100%;
+    height: 100px;
+    width: 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -278,13 +283,45 @@ const icons = [
 const ReserveSection = () => {
     const location = useLocation();
     const id = location.pathname.split("/")[2];
+
+    const dispatch = useDispatch();
+
+    //dispatch(getRoomById(id));
+    useEffect(() => {
+        dispatch(getRoomById(id));
+    }, [dispatch]);
+
+    const { room, loading, error } = useSelector((state) => state.roomById);
+    useEffect(() => {
+        if (error) toast.error(error);
+    }, [dispatch, loading, error]);
+
+    const [otherImages, setOtherImages] = useState({});
+    const [image1, setImage1] = useState({});
+    const [image2, setImage2] = useState({});
+    const [image3, setImage3] = useState({});
+
+    useEffect(() => {
+        if (room) setOtherImages(room.otherImages);
+    }, [room]);
+
+    useEffect(() => {
+        if (otherImages && otherImages.length >= 3) {
+            setImage1(otherImages[0]);
+            setImage2(otherImages[1]);
+            setImage3(otherImages[2]);
+        }
+    }, [otherImages]);
+
     return (
         <Container>
             <Wrapper style={{ alignItems: "stretch" }}>
+                {loading && <BackdropLoader />}
+
                 <Top>
                     <TopLeft>
                         <ImageContainer>
-                            <Image src={long_news.image} />
+                            <Image src={room?.defaultImage} />
                         </ImageContainer>
                         <IconsContainer>
                             {icons.map((i) => (
@@ -296,17 +333,17 @@ const ReserveSection = () => {
                         </IconsContainer>
                     </TopLeft>
                     <TopRight>
-                        <RoomTitle>{room.title}</RoomTitle>
-                        <RoomDesc>{room.desc}</RoomDesc>
+                        <RoomTitle>{room?.title}</RoomTitle>
+                        <RoomDesc>{room?.description}</RoomDesc>
                         <CapacitySection>
                             <CapacityTitle>ظرفیت:</CapacityTitle>
-                            <Capacity>{room.capacity}</Capacity>
+                            <Capacity>{room?.capacity}</Capacity>
                         </CapacitySection>
                         <FacilitiesTitle>
                             امکانات جانبی هتل شامل:
                         </FacilitiesTitle>
                         <FacilitiesContainer>
-                            {room.facilities.map((f) => (
+                            {room?.facilities?.map((f) => (
                                 <FacilitiesItem key={f}>{f}</FacilitiesItem>
                             ))}
                         </FacilitiesContainer>
@@ -333,17 +370,17 @@ const ReserveSection = () => {
                 <Bottom>
                     <BottomLeft>
                         <BigImageContainer>
-                            <Image src="/images/room3.png" />
+                            <Image src={otherImages} />
                         </BigImageContainer>
                         <SmallImagesContainer>
                             <SmallImageContainer>
-                                <Image src="/images/room2.png" />
+                                <Image src={image1?.url} />
                             </SmallImageContainer>
                             <SmallImageContainer>
-                                <Image src="/images/room4.png" />
+                                <Image src={image2?.url} />
                             </SmallImageContainer>
                             <SmallImageContainer>
-                                <Image src="/images/room6.png" />
+                                <Image src={image3?.url} />
                             </SmallImageContainer>
                         </SmallImagesContainer>
                     </BottomLeft>
