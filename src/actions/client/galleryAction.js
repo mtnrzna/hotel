@@ -10,11 +10,13 @@ export const getGallery = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_GALLERY_PICS_REQUEST });
 
-        const { data } = await axiosInstance.get("/gallery");
+        const { data } = await axiosInstance.get("/gallery", {
+            params: { page: 1 },
+        });
 
         dispatch({
             type: ALL_GALLERY_PICS_SUCCESS,
-            payload: data.gallery,
+            payload: data.gallery.data,
         });
     } catch (error) {
         dispatch({

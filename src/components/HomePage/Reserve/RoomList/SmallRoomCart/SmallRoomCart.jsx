@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import LikesButton from "../../../../UI/LikesButton";
@@ -6,6 +6,12 @@ import CapacityButton from "../../../../UI/CapacityButton";
 import LinkWrapper from "../../../../LinkWrapper";
 import truncateText from "../../../../../utils/truncateText";
 import { mobile } from "../../../../../responsive";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    getRoomDetail,
+    incrementRoomLike,
+} from "../../../../../actions/client/roomAction";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
     display: flex;
@@ -89,6 +95,25 @@ const IconsWrapper = styled.div`
 `;
 
 const SmallRoomCart = ({ room }) => {
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.incrementRoomLike);
+    const [liked, setLiked] = useState(false);
+    const [allLikes, setAllLikes] = useState(room?.like_count);
+
+    const handleLikeIncrement = async () => {
+        if (!liked) {
+            setLiked(!liked);
+            await dispatch(incrementRoomLike(room.id));
+            setAllLikes(allLikes + 1);
+        }
+    };
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [dispatch, loading, error]);
+
     return (
         <Container>
             <Left>
@@ -98,7 +123,7 @@ const SmallRoomCart = ({ room }) => {
                 <LinkWrapper to={`/reserve/${room.id}`}>
                     <Title>{truncateText(room.title, 50)}</Title>
                 </LinkWrapper>
-                <Desc>{truncateText(room.desc, 100)}</Desc>
+                <Desc>{truncateText(room.description, 100)}</Desc>
                 <BottomBar>
                     <LinkWrapper to={`/reserve/${room.id}`}>
                         <ReserveButton>
@@ -107,8 +132,12 @@ const SmallRoomCart = ({ room }) => {
                         </ReserveButton>
                     </LinkWrapper>
                     <IconsWrapper>
-                        <LikesButton likeNumber={18} />
-                        <CapacityButton capacityNumber={4} />
+                        <LikesButton
+                            liked={liked}
+                            likeNumber={allLikes}
+                            onClick={() => handleLikeIncrement(room)}
+                        />
+                        <CapacityButton capacityNumber={room.capacity} />
                     </IconsWrapper>
                 </BottomBar>
             </Right>

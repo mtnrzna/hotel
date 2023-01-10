@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { bigRoom } from "../.././../../data";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -7,6 +7,9 @@ import CapacityButton from "../../../UI/CapacityButton";
 import LinkWrapper from "../../../LinkWrapper";
 import truncateText from "../../../../utils/truncateText";
 import { mobile } from "../../../../responsive";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { incrementRoomLike } from "../../../../actions/client/roomAction";
 
 const Container = styled.div`
     margin: 0 10px 10px 0;
@@ -27,7 +30,9 @@ const Top = styled.div`
 `;
 
 const Image = styled.img`
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 const Bottom = styled.div`
@@ -69,26 +74,51 @@ const IconsWrapper = styled.div`
 `;
 
 const BigCartRoom = () => {
+    const { chosenRooms } = useSelector((state) => state.chosenRooms);
+    const chosenRoom = chosenRooms ? chosenRooms[3] : null;
+
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.incrementRoomLike);
+    const [liked, setLiked] = useState(false);
+    const [allLikes, setAllLikes] = useState(chosenRoom?.like_count);
+
+    const handleLikeIncrement = async () => {
+        if (!liked) {
+            setLiked(!liked);
+            await dispatch(incrementRoomLike(chosenRoom.id));
+            setAllLikes(allLikes + 1);
+        }
+    };
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [dispatch, loading, error]);
     return (
         <Container>
             <Top>
-                <Image src={bigRoom.image} />
+                <Image src={chosenRoom?.image} />
             </Top>
             <Bottom>
-                <LinkWrapper to={`/reserve/${bigRoom.id}`}>
-                    <Title>{truncateText(bigRoom.title, 50)}</Title>
+                <LinkWrapper to={`/reserve/${chosenRoom?.id}`}>
+                    <Title>{truncateText(chosenRoom?.title, 50)}</Title>
                 </LinkWrapper>
-                <Desc>{truncateText(bigRoom.desc, 100)}</Desc>
+                <Desc>{truncateText(chosenRoom?.description, 100)}</Desc>
                 <BottomBar>
-                    <LinkWrapper to={`/reserve/${bigRoom.id}`}>
+                    <LinkWrapper to={`/reserve/${chosenRoom?.id}`}>
                         <ReserveButton>
                             <ArrowBackIosIcon style={{ fontSize: "14px" }} />
                             رزرو اتاق
                         </ReserveButton>
                     </LinkWrapper>
                     <IconsWrapper>
-                        <LikesButton likeNumber={18} />
-                        <CapacityButton capacityNumber={4} />
+                        <LikesButton
+                            liked={liked}
+                            likeNumber={allLikes}
+                            onClick={() => handleLikeIncrement(chosenRoom)}
+                        />
+                        <CapacityButton capacityNumber={chosenRoom?.capacity} />
                     </IconsWrapper>
                 </BottomBar>
             </Bottom>

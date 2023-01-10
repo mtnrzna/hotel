@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "../Container";
 import Wrapper from "../Wrapper";
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getGallery } from "../../actions/client/galleryAction";
 import BackdropLoader from "../Layouts/BackdropLoader";
+import BASE_URL from "../../BASE_URL";
 
 const Top = styled.h3`
     margin-bottom: 20px;
@@ -24,24 +25,11 @@ const Bottom = styled.div`
     })}
 `;
 const Grid = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: stretch;
     ${mobile({
         width: "100%",
-    })}
-`;
-
-const Column = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    ${mobile({
-        height: "100px",
-        width: "100%",
-        display: "block",
     })}
 `;
 
@@ -77,9 +65,8 @@ const GalleryGrid = () => {
             toast.error(error);
         }
         dispatch(getGallery());
-        console.log(gallery);
     }, [dispatch, error]);
-
+    console.log(gallery);
     return (
         <>
             {loading && <BackdropLoader />}
@@ -88,43 +75,11 @@ const GalleryGrid = () => {
                     <Top>اتاق‌ها و سوییت‌ها</Top>
                     <Bottom>
                         <Grid>
-                            <Column>
-                                <ImageContainer styles={{ flex: "1" }}>
-                                    <Image src="/images/gallery/pic1.png" />
+                            {gallery.slice(0, 10).map((item) => (
+                                <ImageContainer key={item.id}>
+                                    <Image src={`${BASE_URL + item.image}`} />
                                 </ImageContainer>
-                                <ImageContainer styles={{ flex: "2" }}>
-                                    <Image src="/images/gallery/pic2.png" />
-                                </ImageContainer>
-                            </Column>
-                            <Column>
-                                <ImageContainer styles={{ flex: 1 }}>
-                                    <Image src="/images/gallery/pic3.png" />
-                                </ImageContainer>
-                            </Column>
-                            <Column>
-                                <ImageContainer styles={{ flex: 2 }}>
-                                    <Image src="/images/gallery/pic4.png" />
-                                </ImageContainer>
-                                <ImageContainer styles={{ flex: 1 }}>
-                                    <Image src="/images/gallery/pic5.png" />
-                                </ImageContainer>
-                            </Column>
-                            <Column>
-                                <ImageContainer styles={{ flex: 1 }}>
-                                    <Image src="/images/gallery/pic6.png" />
-                                </ImageContainer>
-                                <ImageContainer styles={{ flex: 1 }}>
-                                    <Image src="/images/gallery/pic7.png" />
-                                </ImageContainer>
-                                <ImageContainer styles={{ flex: 1 }}>
-                                    <Image src="/images/gallery/pic8.png" />
-                                </ImageContainer>
-                            </Column>
-                            <Column>
-                                <ImageContainer styles={{ flex: 1 }}>
-                                    <Image src="/images/gallery/pic9.png" />
-                                </ImageContainer>
-                            </Column>
+                            ))}
                         </Grid>
                     </Bottom>
                 </Wrapper>

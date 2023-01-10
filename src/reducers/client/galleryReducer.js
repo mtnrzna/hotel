@@ -14,7 +14,7 @@ export const galleryReducer = (state = { gallery: [] }, { type, payload }) => {
         case ALL_GALLERY_PICS_SUCCESS:
             return {
                 loading: false,
-                ROOMS: payload,
+                gallery: payload,
             };
         case ALL_GALLERY_PICS_FAIL:
             return {

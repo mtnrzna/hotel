@@ -24,29 +24,27 @@ const Bottom = styled.div`
 `;
 
 const Reserve = () => {
+    const { loading, error } = useSelector((state) => state.chosenRooms);
     const dispatch = useDispatch();
-
-    const { loading, chosenRooms, error } = useSelector(
-        (state) => state.chosenRooms
-    );
-
-    dispatch(getChosenRooms);
+    useEffect(() => {
+        dispatch(getChosenRooms());
+    }, [dispatch]);
 
     useEffect(() => {
         if (error) {
             toast.error(error);
         }
-    }, [dispatch, error, chosenRooms]);
-    console.log("chosen", chosenRooms);
-
+    }, [dispatch, loading, error]);
     return (
         <HomeSectionContainer>
             <HomeSectionWrapper>
                 <Top>رزرو اتاق</Top>
-                <Bottom>
-                    <BigCartRoom />
-                    <RoomList />
-                </Bottom>
+                {!loading && (
+                    <Bottom>
+                        <BigCartRoom />
+                        <RoomList />
+                    </Bottom>
+                )}
             </HomeSectionWrapper>
         </HomeSectionContainer>
     );
