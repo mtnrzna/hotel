@@ -4,54 +4,11 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import LinkWrapper from ".././LinkWrapper";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { newsListAction } from "../../actions/admin/newsListAction";
 
-const columns = [
-  { field: "id", headerName: "شماره خبر", width: 90 },
-  {
-    field: "newsName",
-    headerName: "عنوان",
-    width: 150,
-  },
 
-  {
-    field: "img",
-    headerName: "تصویر",
-    width: 150,
-    renderCell: (params) => (
-      <img style={{ width: "90px", height: "50px" }} src={params.value} />
-    ),
-  },
-
-  {
-    headerName: " عملیات ",
-    width: 300,
-    renderCell: (cellValues) => {
-      return (
-        <>
-          <Button
-            variant="contained"
-            color="warning"
-            onClick={(event) => {
-              console.log( cellValues.row);
-            }}
-          >
-            ویرایش
-          </Button>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={(event) => {
-              console.log(cellValues.row);
-            }}
-            sx={{marginRight:"14px"}}
-          >
-            حذف
-          </Button>
-        </>
-      );
-    },
-  },
-];
 
 const rows = [
   { id: 1, newsName: "دبل سوویت", img: "/images/gallery/pic1.png" },
@@ -82,18 +39,75 @@ const MenuItem = styled.button`
   padding: 10px;
 `;
 export default function DataGridDemo() {
+  const dispatch = useDispatch();
+
+  const { loading, error, news } = useSelector((state) => state.newsList);
+  React.useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    dispatch(newsListAction());
+  }, [dispatch, error]);
+  const columns = [
+    { field: "id", headerName: "شماره خبر", width: 90 },
+    {
+      field: "title",
+      headerName: "عنوان",
+      width: 150,
+    },
+  
+    {
+      field: "image",
+      headerName: "تصویر",
+      width: 150,
+      renderCell: (params) => (
+        <img style={{ width: "90px", height: "50px" }} src={news.image} />
+      ),
+    },
+  
+    {
+      headerName: " عملیات ",
+      width: 300,
+      renderCell: (cellValues) => {
+        return (
+          <>
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={(event) => {
+                console.log( cellValues.row);
+              }}
+            >
+              ویرایش
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={(event) => {
+                console.log(cellValues.row);
+              }}
+              sx={{marginRight:"14px"}}
+            >
+              حذف
+            </Button>
+          </>
+        );
+      },
+    },
+  ];
   return (
     <Center>
       {" "}
       <Box dir="rtl" sx={{ height: 400, width: "80%" }}>
-        <DataGrid
-          rows={rows}
+        {news && (        <DataGrid
+          rows={news}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
-        />
+        />)}
+
       </Box>
       <BtnDiv>
         <LinkWrapper to="/adminpanelcreatenews">

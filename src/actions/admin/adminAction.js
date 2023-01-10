@@ -27,7 +27,6 @@ export const loginAdmin = (email, password) => async (dispatch) => {
         );
 
         localStorage.setItem("tokenAdmin", data.token);
-
         dispatch({
             type: LOGIN_ADMIN_SUCCESS,
             payload: data.admin,

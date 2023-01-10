@@ -4,80 +4,9 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import LinkWrapper from ".././LinkWrapper";
-
-
-const columns = [
-  { field: "id", headerName: "شماره اتاق", width: 90 },
-  {
-    field: "roomName",
-    headerName: "نام اتاق",
-    width: 150,
-  },
-  {
-    field: "price",
-    headerName: "قیمت",
-    width: 150,
-  },
-  {
-    field: "img",
-    headerName: "تصویر",
-    width: 150,
-    renderCell: (params) => (
-      <img style={{ width: "90px", height: "50px" }} src={params.value} />
-    ),
-  },
-  {
-    field: "available",
-    headerName: "وضعیت",
-    description: "This column has a value getter and is not sortable.",
-    width: 150,
-    renderCell: (cellValues) => {
-      return (
-        <Button
-          variant="contained"
-          color={cellValues.value ? "primary" : "error"}
-          onClick={(event) => {
-            console.log(cellValues.row); 
-          }}
-        >
-          فعال
-        </Button>
-      );
-    },
-  },
-
-  {
-    field: "delete",
-    headerName: "عملیات",
-    width: 300,
-    renderCell: (cellValues) => {
-      return (
-
-      <>
-          <Button
-            variant="contained"
-            color="warning"
-            onClick={(event) => {
-              console.log( cellValues.row);
-            }}
-          >
-            ویرایش
-          </Button>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={(event) => {
-              console.log(cellValues.row);
-            }}
-            sx={{marginRight:"14px"}}
-          >
-            حذف
-          </Button>
-        </>
-      );
-    },
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { roomListAction } from "../../actions/admin/roomListAction";
 
 const rows = [
   {
@@ -146,34 +75,117 @@ const rows = [
 ];
 const Center = styled.div`
   margin: 10rem auto;
- max-width:1440px;
+  max-width: 1440px;
 `;
 const BtnDiv = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-right: 17rem;
-  margin-top:1rem;
+  margin-top: 1rem;
 `;
 const MenuItem = styled.button`
   margin: 10px;
   font-size: 16px;
-  background-color:rgb(47, 128, 237);
+  background-color: rgb(47, 128, 237);
   color: white;
   padding: 10px;
 `;
 export default function DataGridDemo() {
+  const dispatch = useDispatch();
+
+  const { loading, error, ROOMS } = useSelector((state) => state.roomList);
+  React.useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    dispatch(roomListAction());
+  }, [dispatch, error]);
+  const columns = [
+    { field: "id", headerName: "شماره اتاق", width: 90 },
+    {
+      field: "title",
+      headerName: "نام اتاق",
+      width: 150,
+    },
+    {
+      field: "price",
+      headerName: "قیمت",
+      width: 150,
+    },
+    {
+      field: "img",
+      headerName: "تصویر",
+      width: 150,
+      renderCell: (params) => (
+        <img style={{ width: "90px", height: "50px" }} src={ROOMS[0]?.otherImages[1].url} />
+      ),
+    },
+    {
+      field: "available",
+      headerName: "وضعیت",
+      description: "This column has a value getter and is not sortable.",
+      width: 150,
+      renderCell: (cellValues) => {
+        return (
+          <Button
+            variant="contained"
+            color={cellValues.value ? "primary" : "error"}
+            onClick={(event) => {
+              console.log(cellValues.row);
+            }}
+          >
+            فعال
+          </Button>
+        );
+      },
+    },
+
+    {
+      field: "delete",
+      headerName: "عملیات",
+      width: 300,
+      renderCell: (cellValues) => {
+        return (
+          <>
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={(event) => {
+                console.log(cellValues.row);
+              }}
+            >
+              ویرایش
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={(event) => {
+                console.log(cellValues.row);
+              }}
+              sx={{ marginRight: "14px" }}
+            >
+              حذف
+            </Button>
+          </>
+        );
+      },
+    },
+  ];
   return (
     <Center>
       {" "}
       <Box dir="rtl" sx={{ height: 400, width: "80%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          disableSelectionOnClick
-          experimentalFeatures={{ newEditingApi: true }}
-        />
+        {ROOMS && (
+          <DataGrid
+            rows={ROOMS}
+            columns={columns}
+            pageSize={5}
+            loading={loading}
+            rowsPerPageOptions={[5]}
+            disableSelectionOnClick
+            experimentalFeatures={{ newEditingApi: true }}
+          />
+        )}
       </Box>
       <BtnDiv>
         <LinkWrapper to="/adminpanelcreateroom">
@@ -183,7 +195,3 @@ export default function DataGridDemo() {
     </Center>
   );
 }
-
-
-
-

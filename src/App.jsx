@@ -27,9 +27,8 @@ import UserPanelReserves from "./pages/UserPanelReserves";
 import UserPanelProfile from "./pages/UserPanelProfile";
 import { useSelector } from "react-redux";
 function App() {
-    const admin = false;
     const { isAuthenticated } = useSelector((state) => state.user);
-    console.log(isAuthenticated);
+    const { isAdmin } = useSelector((state) => state.admin);
     return (
         <BrowserRouter>
             <ScrollToTop />
@@ -77,7 +76,7 @@ function App() {
                 <Route
                     path="/signinadmin"
                     element={
-                        admin ? (
+                      isAdmin ? (
                             <Navigate to="/adminpanelrooms" />
                         ) : (
                             <SignInAdmin />
