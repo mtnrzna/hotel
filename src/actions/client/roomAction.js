@@ -5,6 +5,9 @@ import {
     INCREMENT_ROOM_LIKE_REQUEST,
     INCREMENT_ROOM_LIKE_SUCCESS,
     INCREMENT_ROOM_LIKE_FAIL,
+    GET_ROOMS_REQUEST,
+    GET_ROOMS_SUCCESS,
+    GET_ROOMS_FAIL,
 } from "../../constants/client/roomConstants";
 import { axiosInstance } from "../../interceptor/interceptor";
 
@@ -56,5 +59,30 @@ export const getRoomDetail = (id) => async () => {
         return data.room;
     } catch (error) {
         console.log(error);
+    }
+};
+
+// Get Rooms By Page Number
+export const getRoomsByPage = (page) => async (dispatch) => {
+    try {
+        dispatch({ type: GET_ROOMS_REQUEST });
+
+        const { data } = await axiosInstance.get("/rooms", {
+            params: { page: page },
+        });
+
+        const roomsAndPageNumber = {
+            rooms: data.rooms.data,
+            totalPageNumber: data.rooms.total,
+        };
+        dispatch({
+            type: GET_ROOMS_SUCCESS,
+            payload: roomsAndPageNumber,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_ROOMS_FAIL,
+            payload: error.response.data.message,
+        });
     }
 };

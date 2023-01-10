@@ -37,7 +37,7 @@ const ReservesSection = () => {
                 <Top>
                     <Filter>
                         <Select name="filer">
-                            <Option disabled selected>
+                            <Option disabled defaultValue>
                                 مقدار پیش فرض
                             </Option>
                             <Option>فیلتر1</Option>

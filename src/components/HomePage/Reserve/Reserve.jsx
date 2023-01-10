@@ -26,14 +26,13 @@ const Bottom = styled.div`
 const Reserve = () => {
     const { loading, error } = useSelector((state) => state.chosenRooms);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getChosenRooms());
     }, [dispatch]);
 
     useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
+        if (error) toast.error(error);
     }, [dispatch, loading, error]);
     return (
         <HomeSectionContainer>
